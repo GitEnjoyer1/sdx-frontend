@@ -1,0 +1,47 @@
+<sdx-footer
+    legals='[{"label":"Imprint","href":"imprint.html"},{"label":"Legal aspects","href":"legal.html"},{"label":"Contact","href":"contact.html"}]'
+    languages='[
+    {
+    "label": "DE",
+    "ariaLabel": "German",
+    "href": "javascript:;",
+    "eventMapping": {
+        "click": "language-select"
+    }
+    },
+    {
+    "label": "FR",
+    "ariaLabel": "French",
+    "href": "javascript:;",
+    "eventMapping": {
+        "click": "language-select"
+    }
+    },
+    {
+    "label": "IT",
+    "ariaLabel": "Italian",
+    "href": "javascript:;",
+    "eventMapping": {
+        "click": "language-select"
+    }
+    },
+    {
+    "label": "EN",
+    "ariaLabel": "English",
+    "href": "javascript:;",
+    "active": true,
+    "eventMapping": {
+        "click": "language-select"
+    }
+    }
+]
+'
+></sdx-footer>
+
+<script>
+    document
+    .querySelector("sdx-footer")
+    .addEventListener("language-select", (e) => {
+        alert(`Selected language ${e.detail.item.label}`)
+    })
+</script>
