@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import type { Components } from "@swisscom/sdx"
 import { ViewChild } from '@angular/core';
@@ -17,7 +17,6 @@ export class AppComponent {
   title = 'sdx-frontend';
   @ViewChild('userChoice') sdxSelectElement!: Components.SdxSelect;
   ngAfterViewInit() {
-    this.sdxSelectElement.label = "What is your choice?";
   }
   
 }
