@@ -1,0 +1,166 @@
+{
+    "clients": [
+        { 
+            "id": "1",
+            "name": "Siemens AG",
+            "UID": 1001,
+            "GID": 2001,
+            "email": "info@siemens.com",
+            "description": "Siemens AG ist ein weltweit operierendes Elektronikunternehmen",
+            "comment": "Keine Besonderheiten"
+        },
+        { 
+            "id": "2",
+            "name": "Bosch GmbH",
+            "UID": 2002,
+            "GID": 3002,
+            "email": "info@bosch.com",
+            "description": "Die Bosch GmbH ist ein internationaler Hersteller von Haushaltsgeräten und Automobilkomponenten",
+            "comment": "Testnotizen hier einfügen"
+        },
+        { 
+            "id": "3",
+            "name": "Novartis AG",
+            "UID": 3003,
+            "GID": 4003,
+            "email": "info@novartis.com",
+            "description": "Novartis AG ist ein global führendes Unternehmen im Gesundheitswesen",
+            "comment": "Im Beta-Stadium"
+        },
+        { 
+            "id": "4",
+            "name": "UBS Group AG",
+            "UID": 4004,
+            "GID": 5004,
+            "email": "info@ubs.com",
+            "description": "Die UBS Group AG ist eine schweizerische Großbank mit Sitz in Zürich",
+            "comment": "Entwicklungsumgebung"
+        },
+        { 
+            "id": "5",
+            "name": "Roche Holding AG",
+            "UID": 5005,
+            "GID": 6005,
+            "email": "info@roche.com",
+            "description": "Roche Holding AG ist ein schweizerisches Unternehmen im Gesundheitswesen",
+            "comment": "QA-Umgebung"
+        },
+        { 
+            "id": "6",
+            "name": "ABB Ltd",
+            "UID": 6006,
+            "GID": 7006,
+            "email": "info@abb.com",
+            "description": "ABB Ltd ist ein schweizerisch-schwedischer Elektrotechnikkonzern",
+            "comment": "Lasttest Zwecke"
+        },
+        { 
+            "id": "7",
+            "name": "Deutsche Bank AG",
+            "UID": 7007,
+            "GID": 8007,
+            "email": "info@deutsche-bank.com",
+            "description": "Die Deutsche Bank AG ist ein weltweit tätiges Finanzdienstleistungsunternehmen",
+            "comment": "Staging Umgebung, letzter Schritt vor Produktion"
+        },
+        { 
+            "id": "8",
+            "name": "Bayer AG",
+            "UID": 8008,
+            "GID": 9008,
+            "email": "info@bayer.com",
+            "description": "Die Bayer AG ist ein Life-Science-Unternehmen mit Kernkompetenzen auf den Gebieten Gesundheit und Landwirtschaft",
+            "comment": "Reserve Client"
+        }
+    ],
+    "users": [
+        { 
+            "id": "1",
+            "name": "Max Müller",
+            "email": "max.mueller@example.com",
+            "UID": 501,
+            "GID": 1001,
+            "description": "Max Müller von Siemens AG",
+            "operating_system": "Windows 10",
+            "clientID": "1",
+            "comment": "Hat administrative Rechte"
+        },
+        { 
+            "id": "2",
+            "name": "Anna Schmidt",
+            "email": "anna.schmidt@example.com",
+            "UID": 1502,
+            "GID": 2002,
+            "description": "Anna Schmidt von Bosch GmbH",
+            "operating_system": "Windows 10",
+            "clientID": "2",
+            "comment": "Hat eingeschränkte Rechte"
+        },
+        { 
+            "id": "3",
+            "name": "Thomas Becker",
+            "email": "thomas.becker@example.com",
+            "UID": 2503,
+            "GID": 3003,
+            "description": "Thomas Becker ist ein Mitarbeiter von Novartis AG",
+            "operating_system": "MacOS",
+            "clientID": "3",
+            "comment": "Hat volle Zugriffsrechte"
+        },
+        { 
+            "id": "4",
+            "name": "Lena Bauer",
+            "email": "lena.bauer@example.com",
+            "UID": 3504,
+            "GID": 4004,
+            "description": "Lena Bauer arbeitet bei UBS Group AG",
+            "operating_system": "Windows 10",
+            "clientID": "4",
+            "comment": "Administratorrechte"
+        },
+        { 
+            "id": "5",
+            "name": "David Wagner",
+            "email": "david.wagner@example.com",
+            "UID": 4505,
+            "GID": 5005,
+            "description": "David Wagner ist bei Roche Holding AG",
+            "operating_system": "Linux",
+            "clientID": "5",
+            "comment": "Normale Zugriffsrechte"
+        },
+        { 
+            "id": "6",
+            "name": "Sophia Schneider",
+            "email": "sophia.schneider@example.com",
+            "UID": 5506,
+            "GID": 6006,
+            "description": "Sophia Schneider ist Mitglied von ABB Ltd",
+            "operating_system": "Linux",
+            "clientID": "6",
+            "comment": "Hat eingeschränkte Rechte"
+        },
+        { 
+            "id": "7",
+            "name": "Lucas Fischer",
+            "email": "lucas.fischer@example.com",
+            "UID": 6507,
+            "GID": 7007,
+            "description": "Lucas Fischer hat viele API-Aufrufe bei Deutsche Bank AG",
+            "operating_system": "Windows 10",
+            "clientID": "7",
+            "comment": "Regelmäßiger Nutzer"
+        },
+        { 
+            "id": "8",
+            "name": "Emma Weber",
+            "email": "emma.weber@example.com",
+            "UID": 7508,
+            "GID": 8008,
+            "description": "Emma Weber ist ein Reservebenutzer von Bayer AG",
+            "operating_system": "Windows 10",
+            "clientID": "8",
+            "comment": "Im Falle eines Notfalls verwenden"
+        }
+    ]
+}
