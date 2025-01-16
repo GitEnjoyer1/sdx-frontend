@@ -1,12 +1,14 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, catchError } from 'rxjs/operators';
+import { BackendServiceService } from '../backend-service.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -14,22 +16,24 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable({providedIn: 'root'})
 export class ClientComponent {
 
-  response: any = ""
-  errorMessage: string = ""
+  response: any = "";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private backendService: BackendServiceService) {}
   
+  ngOnInit(): void {
+    this.getClients();
+    console.log(this.response);
+    }
 
-  getClients() {
-    this.http.get('http://localhost:3000/clients').pipe(
-      map(response => {
-        console.log(response);
-        return response;
-      }),
-      catchError(error => {
-        console.error('There was an error!', error);
-        throw error; // Let the app keep running by returning an empty result.
-      })
-    ).subscribe();
+  getClients(): void {
+    this.backendService.getClients().subscribe(
+      data => {
+        this.response = data;
+        console.log(this.response);
+      },
+      error => {
+        console.error('Error fetching clients', error);
+      }
+    );
   }
 }

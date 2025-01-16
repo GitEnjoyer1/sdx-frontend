@@ -1,29 +1,12 @@
 
 <div class="content">
-    <div class="row row--gutters">
-        <div class="col-lg-6 col-xl-4">
-
-        <sdx-card label="Title" label-aria-level="2" href="javascript:;" href-label="Link" href-aria-label="Open new website." (click)="getClients()">
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
-        </sdx-card>
-
-        </div>
-        <div class="col-lg-6 col-xl-4">
-        
-        <sdx-card label="Title" label-aria-level="2" href="javascript:;" href-label="Link" href-aria-label="Open new website.">
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
-        </sdx-card>
-
-        </div>
-        <div class="col-lg-6 col-xl-4">
-        
-            <sdx-card label="Title" label-aria-level="2" href="javascript:;" href-label="Link" href-aria-label="Open new website.">
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
-            </sdx-card>
+    
+        <div *ngFor="let item of response; let i = index;">
+                <sdx-card class="card" label="Title {{i+1}}" label-aria-level="2" href="javascript:;" href-label="Link" href-aria-label="Open new website.">
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+                </sdx-card>
         
         </div>
-    </div>
+    
 </div>
