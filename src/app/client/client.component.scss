@@ -1,6 +1,16 @@
+h1 {
+    margin-bottom: 0px;
+}
+
+.header {
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     flex-direction: row;
     max-width: 90vw;
@@ -10,6 +20,24 @@
 
 .card {
     display: block;
-    width: 27vw;
-    margin: 1.5vw // 9 remaining vw divided by 6 margin spots
+    width: 29vw;
+    margin: .5vw // 6 remaining vw divided by 6 margin spots
+}
+
+.icon-label {
+    margin-bottom: 10px;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-left: .5vw;
+    margin-right: .5vw;
+    margin-bottom: 30px;
+}
+
+.sub-header {
+    margin-left: .5vw;
 }

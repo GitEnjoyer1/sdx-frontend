@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BackendServiceService } from '../backend-service.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,24 +16,31 @@ import { CommonModule } from '@angular/common';
 @Injectable({providedIn: 'root'})
 export class ClientComponent {
 
-  response: any = "";
+  clients: any[] = [];
 
-  constructor(private http: HttpClient, private backendService: BackendServiceService) {}
+
+  constructor(private router: Router, private backendService: BackendServiceService) {}
   
   ngOnInit(): void {
     this.getClients();
-    console.log(this.response);
+    console.log(this.clients);
     }
 
   getClients(): void {
     this.backendService.getClients().subscribe(
       data => {
-        this.response = data;
-        console.log(this.response);
+        this.clients = data;
+        console.log(this.clients);
       },
       error => {
         console.error('Error fetching clients', error);
       }
     );
   }
+
+  goToDetails(id: number) {
+    this.router.navigate(['/client', id]); 
+  }
+  
+
 }
