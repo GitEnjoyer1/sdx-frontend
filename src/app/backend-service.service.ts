@@ -13,13 +13,18 @@ export class BackendServiceService {
   getClients(): Observable<any> {
     return this.http.get('http://localhost:3000/clients').pipe(
       map(response => {
-        // Perform any transformation on the response here if necessary
+        // Perform any transformation here if necessary
         return response;
-      }),
-      catchError(error => {
-        console.error('There was an error!', error);
-        return throwError(() => error); 
       })
     );
-  }
+}
+
+getClientsById(id: number): Observable<any> {
+  return this.http.get(`http://localhost:3000/clients/${id}`).pipe(
+    map(response => {
+      // Perform any transformation here if necessary
+      return response;
+    })
+  );
+}
 }
