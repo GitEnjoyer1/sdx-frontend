@@ -3,13 +3,12 @@
         <h1>{{client.name}}</h1>     
         <sdx-button-group>
             <sdx-button label="Edit"></sdx-button>
-            <sdx-button theme="secondary" label="Delete"></sdx-button>
+            <sdx-button theme="secondary" label="Delete" (click)="deleteClients(client.id); navigateToClientpage();"></sdx-button>
         </sdx-button-group>    </div>
     <h4>{{client.description}}</h4>
 
-    <hr class="divider divider--mid-gray" aria-hidden="true">
 
-    <div class="content">
+    <div class="details">
         <div class="row">
             <p class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{client.email}}</p>
             <p class="col-xs">UID Range: {{client.uidRange[0]}} - {{client.uidRange[1]}}</p>
@@ -21,4 +20,23 @@
             <p class="col-xs"></p>
         </div>
     </div>
+    <hr class="divider divider--mid-gray" aria-hidden="true">
+
+    <div class="users">
+        <div *ngFor="let user of users; let i = index;">
+            <sdx-card class="card" label="{{user.name}}" label-aria-level="2" href="/user/{{user.id}}" href-label="Details" href-aria-label="Open new website.">
+                    <div class="row">
+                            <div class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{user.email}}</div>
+                            <div class="col-xs">UID Range: {{user.uid}}</div>
+                    </div>
+                    <div class="row">
+                            <div class="col-xs"><sdx-icon class="icon" icon-name="icon-laptop" size="" sr-hint="Displays the user account"></sdx-icon> Betriebssystem: {{user.operatingSystem}}</div>
+                            <div class="col-xs">GID Range: {{user.gid}}</div>
+                    </div>
+            </sdx-card>
+    
+    </div>
+    </div>
+
 </div>
+

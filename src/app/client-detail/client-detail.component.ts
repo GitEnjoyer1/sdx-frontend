@@ -1,20 +1,20 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, numberAttribute } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BackendServiceService } from '../backend-service.service';
 import { ClientObject } from '../../utils/interfaces';
-
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-client-detail',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ClientDetailComponent {
 
-  constructor(private route: ActivatedRoute, private backendService: BackendServiceService){}
+  constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService){}
 
   client: ClientObject = {
     id: 0,
@@ -26,11 +26,14 @@ export class ClientDetailComponent {
     comment: ''
   };
 
+    users: any = {};
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.getClientsById(id)
     })
+    this.getUsers();
   }
 
   getClientsById(id: number): void {
@@ -48,6 +51,33 @@ export class ClientDetailComponent {
       },
       error => {
         console.error('Error fetching clients', error);
+      }
+    );
+  }
+
+  deleteClients(id: number): void {
+    this.backendService.deleteClients(id).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.error('Error fetching clients', error);
+      }
+    );
+  }
+
+  navigateToClientpage(): void {
+    this.router.navigate(['/client']);
+  }
+
+  getUsers(): void {
+    this.backendService.getUsers().subscribe(
+      data => {
+        this.users = data;
+        console.log(this.users);
+      },
+      error => {
+        console.error('Error fetching users', error);
       }
     );
   }
