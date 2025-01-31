@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#source: https://dev.to/unfor19/writing-bash-scripts-like-a-pro-part-2-error-handling-46ff
+
+# Stop execution on any error
+
+# Run the 'ls' command and redirect both STDOUT and STDERR to the 'response' variable
+response="$(cd ./startscript/ 2>&1)"
+# Did NOT set `set -e`, hence script continues even if there's an error
+if [[ $? -eq 0 ]]; then
+    cd ./startscript/
+    
+    pwd
+    echo resetting db.json
+    cp db_template.json ../db.json
+    
+
+    echo starting mock service
+    osascript -e 'tell app "Terminal"
+    do script "bash ./start-mockservice"
+    end tell'
+    
+    
+    
+
+    echo starting angular frontend
+    ./start-frontend
+    
+else
+    echo "Error while changing directory: Make sure you're running the script from the project root."
+fi
+
+
