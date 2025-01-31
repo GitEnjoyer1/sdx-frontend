@@ -17,7 +17,7 @@ if [[ $? -eq 0 ]]; then
 
     echo starting mock service
     osascript -e 'tell app "Terminal"
-    do script "bash ~/work/husam-stuff/Frontend/sdx-frontend/startscript/start-mockservice"
+    do script "bash ~/private/private_projects/frontend/sdx-frontend/startscript/start-mockservice"
     end tell'
     
     
