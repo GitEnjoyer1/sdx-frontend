@@ -1,3 +1,7 @@
+TODO: write readme.md
+When cloning run: npm login --registry=https://artifactory.swisscom.com/artifactory/api/npm/adps-ref-npm-virtual/ --auth-type=web
+
+
 # SdxFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
