@@ -1,5 +1,4 @@
 #!/bin/bash
 
-cd ..
 echo starting mockservice
-npx json-server db.json
+npx json-server /Users/taaelhu2/work/husam-stuff/Frontend/sdx-frontend/db.json
