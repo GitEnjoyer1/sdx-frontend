@@ -9,9 +9,26 @@ import { Component, Input} from '@angular/core';
 })
 export class ErrorPageComponent {
 
-  @Input() type: string | undefined;  
+  @Input() type: 'fetchError' | 'notFoundError' | undefined;
 
-  cl() {
-    console.log(this.type)
+  errorHeader: string = "Opps!"
+  errorText: string = "An Error has occured"
+
+  ngOnInit(): void {
+    if (this.type == "fetchError") {
+      this.setFetchError();
+    }
+    if (this.type == "notFoundError") {
+      this.setNotFoundError();
+    }
+  }
+
+  setFetchError() {
+    this.errorText = "Looks like we ran into some problems fetching the data."
+  }
+
+  setNotFoundError() {
+    this.errorHeader = "404 Not Found"
+    this.errorText = "The page you are looking for doesn't exist."
   }
 }
