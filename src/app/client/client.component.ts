@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { BackendServiceService } from '../backend-service.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ErrorPageComponent } from "../error-page/error-page.component";
 
 
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ErrorPageComponent],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

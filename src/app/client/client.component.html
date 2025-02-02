@@ -30,7 +30,5 @@
 </div>
 
 <div *ngIf="!fetch_successful" class="error">
-        <h1 class="margin-v-2">Oops!!</h1>
-        <h2>Seems like we've ran into some problems fetching the data.</h2>
-        <img class="error-image margin-v-2" src="../../assets/astronaut.svg" alt="Astronaut floating in space">
+        <app-error-page [type]="'fetch-error'" ></app-error-page>
 </div>
