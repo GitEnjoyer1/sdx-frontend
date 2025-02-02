@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class ClientComponent {
 
   clients: any[] = [];
+  fetch_successful: boolean = true
 
 
   constructor(private router: Router, private backendService: BackendServiceService) {}
@@ -33,6 +34,7 @@ export class ClientComponent {
         console.log(this.clients);
       },
       error => {
+        this.fetch_successful=false
         console.error('Error fetching clients', error);
       }
     );

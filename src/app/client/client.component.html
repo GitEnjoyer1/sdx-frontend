@@ -1,27 +1,36 @@
 
-<div class="header">
-        <div class="button-row">
-                <h1>Kunden</h1>
-                <sdx-button label="Create"></sdx-button>
+<div *ngIf="fetch_successful">
+        <div class="header">
+                <div class="button-row">
+                        <h1>Kunden</h1>
+                        <sdx-button label="Create"></sdx-button>
+                </div>
+                <h4 class="sub-header">Kunden welche in der UID-GID Datenbank erfasst wurden, werden hier angezeigt.</h4>
+                <hr class="divider divider--mid-gray" aria-hidden="true">
+
         </div>
-        <h4 class="sub-header">Kunden welche in der UID-GID Datenbank erfasst wurden, werden hier angezeigt.</h4>
-        <hr class="divider divider--mid-gray" aria-hidden="true">
+
+
+        <div class="content">
+                <div *ngFor="let client of clients; let i = index;">
+                        <sdx-card class="card" label="{{client.name}}" label-aria-level="2" href="/client/{{client.id}}" href-label="Details" href-aria-label="Open new website.">
+                                <div class="row">
+                                        <div class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> {{client.email}}</div>
+                                        <div class="col-xs">UID Range: {{client.uid_range[0]}} - {{client.uid_range[1]}}</div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-xs"></div>
+                                        <div class="col-xs">GID Range: {{client.gid_range[0]}} - {{client.gid_range[1]}}</div>
+                                </div>
+                        </sdx-card>
+                
+                </div>
+        </div>
 
 </div>
 
-
-<div class="content">
-        <div *ngFor="let client of clients; let i = index;">
-                <sdx-card class="card" label="{{client.name}}" label-aria-level="2" href="/client/{{client.id}}" href-label="Details" href-aria-label="Open new website.">
-                        <div class="row">
-                                <div class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> {{client.email}}</div>
-                                <div class="col-xs">UID Range: {{client.uid_range[0]}} - {{client.uid_range[1]}}</div>
-                        </div>
-                        <div class="row">
-                                <div class="col-xs"></div>
-                                <div class="col-xs">GID Range: {{client.gid_range[0]}} - {{client.gid_range[1]}}</div>
-                        </div>
-                </sdx-card>
-        
-        </div>
+<div *ngIf="!fetch_successful" class="error">
+        <h1 class="margin-v-2">Oops!!</h1>
+        <h2>Seems like we've ran into some problems fetching the data.</h2>
+        <img class="error-image margin-v-2" src="../../assets/astronaut.svg" alt="Astronaut floating in space">
 </div>
