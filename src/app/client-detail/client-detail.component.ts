@@ -58,16 +58,13 @@ export class ClientDetailComponent {
   deleteClients(id: number): void {
     this.backendService.deleteClients(id).subscribe(
       data => {
-        console.log(data)
+        this.router.navigate(['/']);
+        
       },
       error => {
         console.error('Error fetching clients', error);
       }
     );
-  }
-
-  navigateToClientpage(): void {
-    this.router.navigate(['/client']);
   }
 
   getUsers(): void {
