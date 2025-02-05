@@ -23,6 +23,7 @@ export class ErrorPageComponent {
   }
 
   setFetchError() {
+    this.errorHeader = "Oops!"
     this.errorText = "Looks like we ran into some problems fetching the data."
   }
 }
