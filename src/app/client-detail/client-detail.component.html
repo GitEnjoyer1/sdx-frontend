@@ -1,19 +1,9 @@
-<div class="detailpage">
+<div *ngIf="fetch_successful" class="detailpage">
     <div class="top-row">    
         <h1>{{client.name}}</h1>     
         <sdx-button-group>
             <sdx-button label="Edit"></sdx-button>
             <sdx-button theme="secondary" label="Delete" (click)="deleteClients(client.id);"></sdx-button>
-            <sdx-button
-            label="Show warning"
-            onclick='document.querySelector("sdx-header").showNotification({
-              description: "Maintenance work is currently being carried out on the network.",
-              label: "More info",
-              href: "javascript:;",
-              ariaLabel: "More info about maintenance work",
-              type: "warning"
-            });this.remove()'
-          ></sdx-button>
         </sdx-button-group>    </div>
     <h4>{{client.description}}</h4>
 
@@ -47,6 +37,8 @@
     
     </div>
     </div>
-
 </div>
 
+<div *ngIf="!fetch_successful" class="error">
+    <app-error-page [type]="'fetchError'"></app-error-page>
+</div>

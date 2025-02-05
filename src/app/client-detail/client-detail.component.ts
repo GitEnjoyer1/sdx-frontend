@@ -3,18 +3,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BackendServiceService } from '../backend-service.service';
 import { ClientObject } from '../../utils/interfaces';
 import { NgFor } from '@angular/common';
+import { NotificationService } from '../notification.service';
+import { CommonModule } from '@angular/common';
+import { ErrorPageComponent } from '../error-page/error-page.component';
 
 @Component({
   selector: 'app-client-detail',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, CommonModule, ErrorPageComponent],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ClientDetailComponent {
 
-  constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService){}
+  constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService){}
+
+  fetch_successful: boolean = true
 
   client: ClientObject = {
     id: 0,
@@ -50,6 +55,7 @@ export class ClientDetailComponent {
         console.log(this.client);
       },
       error => {
+        this.fetch_successful = false
         console.error('Error fetching clients', error);
       }
     );
@@ -59,9 +65,10 @@ export class ClientDetailComponent {
     this.backendService.deleteClients(id).subscribe(
       data => {
         this.router.navigate(['/']);
-        
+        this.notificationService.showNotification('confirmation', `Successfully deleted ${this.client.name}`)
       },
       error => {
+        this.notificationService.showNotification('warning', 'There was a problem deleting the client.');
         console.error('Error fetching clients', error);
       }
     );
