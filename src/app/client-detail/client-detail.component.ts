@@ -51,8 +51,6 @@ export class ClientDetailComponent {
         this.client.gidRange = data.gid_range; // directly map gid_range to gidRange
         this.client.description = data.description;
         this.client.comment = data.comment;
-  
-        console.log(this.client);
       },
       error => {
         this.fetch_successful = false
@@ -78,7 +76,6 @@ export class ClientDetailComponent {
     this.backendService.getUsers().subscribe(
       data => {
         this.users = data;
-        console.log(this.users);
       },
       error => {
         console.error('Error fetching users', error);

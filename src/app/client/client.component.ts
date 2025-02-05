@@ -25,14 +25,12 @@ export class ClientComponent {
   
   ngOnInit(): void {
     this.getClients();
-    console.log(this.clients);
     }
 
   getClients(): void {
     this.backendService.getClients().subscribe(
       data => {
         this.clients = data;
-        console.log(this.clients);
       },
       error => {
         this.fetch_successful=false
