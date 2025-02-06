@@ -36,13 +36,13 @@ export class ClientDetailComponent {
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params['id'];
-      this.getClientsById(id)
+      this.getClientById(id)
     })
     this.getUsers();
   }
 
-  getClientsById(id: number): void {
-    this.backendService.getClientsById(id).subscribe(
+  getClientById(id: number): void {
+    this.backendService.getClientById(id).subscribe(
       data => {
         this.client.id = data.id;
         this.client.name = data.name;
