@@ -1,11 +1,11 @@
-<div *ngIf="fetch_successful" class="detailpage">
+<div *ngIf="fetchSuccessful" class="detailpage">
     <div class="top-row">    
         <h1>{{client.name}}</h1>     
         <sdx-button-group>
             <sdx-button label="Edit"></sdx-button>
-            <sdx-button theme="secondary" label="Delete" (click)="deleteClients(client.id);"></sdx-button>
+            <sdx-button theme="secondary" label="Delete" (click)="deleteClient(client.id);"></sdx-button>
         </sdx-button-group>    </div>
-    <h4>{{client.description}}</h4>
+    <h4>{{client.description}} trngdtgd fdbviu fevitrdg ut gbtngir uteu roeb </h4>
 
 
     <div class="details">
@@ -27,11 +27,11 @@
             <sdx-card class="card" label="{{user.name}}" label-aria-level="2" href="/user/{{user.id}}" href-label="Details" href-aria-label="Open new website.">
                     <div class="row">
                             <div class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{user.email}}</div>
-                            <div class="col-xs">UID Range: {{user.uid}}</div>
+                            <div class="col-xs">UID: {{user.uid}}</div>
                     </div>
                     <div class="row">
                             <div class="col-xs"><sdx-icon class="icon" icon-name="icon-laptop" size="" sr-hint="Displays the user account"></sdx-icon> Betriebssystem: {{user.operatingSystem}}</div>
-                            <div class="col-xs">GID Range: {{user.gid}}</div>
+                            <div class="col-xs">GID: {{user.gid}}</div>
                     </div>
             </sdx-card>
     
@@ -39,6 +39,6 @@
     </div>
 </div>
 
-<div *ngIf="!fetch_successful" class="error">
+<div *ngIf="!fetchSuccessful" class="error">
     <app-error-page [type]="'fetchError'"></app-error-page>
 </div>

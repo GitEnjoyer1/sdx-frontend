@@ -1,5 +1,5 @@
 
-<div *ngIf="fetch_successful">
+<div *ngIf="fetchSuccessful">
         <div class="header">
                 <div class="button-row">
                         <h1>Kunden</h1>
@@ -29,6 +29,6 @@
 
 </div>
 
-<div *ngIf="!fetch_successful" class="error">
+<div *ngIf="!fetchSuccessful" class="error">
         <app-error-page [type]="'fetchError'"></app-error-page>
 </div>

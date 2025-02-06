@@ -2,7 +2,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, numberAttribute } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendServiceService } from '../backend-service.service';
 import { ClientObject } from '../../utils/interfaces';
-import { NgFor } from '@angular/common';
 import { NotificationService } from '../notification.service';
 import { CommonModule } from '@angular/common';
 import { ErrorPageComponent } from '../error-page/error-page.component';
@@ -10,7 +9,7 @@ import { ErrorPageComponent } from '../error-page/error-page.component';
 @Component({
   selector: 'app-client-detail',
   standalone: true,
-  imports: [NgFor, CommonModule, ErrorPageComponent],
+  imports: [CommonModule, ErrorPageComponent],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -19,7 +18,7 @@ export class ClientDetailComponent {
 
   constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService){}
 
-  fetch_successful: boolean = true
+  fetchSuccessful: boolean = true
 
   client: ClientObject = {
     id: 0,
@@ -53,21 +52,21 @@ export class ClientDetailComponent {
         this.client.comment = data.comment;
       },
       error => {
-        this.fetch_successful = false
-        console.error('Error fetching clients', error);
+        this.fetchSuccessful = false
+        console.error('Error fetching client', error);
       }
     );
   }
 
-  deleteClients(id: number): void {
-    this.backendService.deleteClients(id).subscribe(
+  deleteClient(id: number): void {
+    this.backendService.deleteClient(id).subscribe(
       data => {
         this.router.navigate(['/']);
-        this.notificationService.showNotification('confirmation', `Successfully deleted ${this.client.name}`)
+        this.notificationService.showNotification('confirmation', `Successfully deleted the client ${this.client.name}`)
       },
       error => {
         this.notificationService.showNotification('warning', 'There was a problem deleting the client.');
-        console.error('Error fetching clients', error);
+        console.error('Error fetching client', error);
       }
     );
   }

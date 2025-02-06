@@ -15,7 +15,7 @@ export type UserObject = {
     uid: number;
 	gid: number;
     operatingSystem: string;
-    clientId: string;
+    clientId: number;
 	description: string;
 	comment: string;
 }

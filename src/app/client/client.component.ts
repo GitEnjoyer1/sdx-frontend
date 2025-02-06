@@ -18,7 +18,7 @@ import { ErrorPageComponent } from "../error-page/error-page.component";
 export class ClientComponent {
 
   clients: any[] = [];
-  fetch_successful: boolean = true
+  fetchSuccessful: boolean = true
 
 
   constructor(private router: Router, private backendService: BackendServiceService) {}
@@ -33,7 +33,7 @@ export class ClientComponent {
         this.clients = data;
       },
       error => {
-        this.fetch_successful=false
+        this.fetchSuccessful=false
         console.error('Error fetching clients', error);
       }
     );

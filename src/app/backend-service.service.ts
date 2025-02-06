@@ -20,7 +20,7 @@ export class BackendServiceService {
     );
 }
 
-getClientsById(id: number): Observable<any> {
+getClientById(id: number): Observable<any> {
   return this.http.get(`http://localhost:3000/clients/${id}`).pipe(
     map(response => {
       // Perform any transformation here if necessary
@@ -29,7 +29,7 @@ getClientsById(id: number): Observable<any> {
   );
 }
 
-deleteClients(id: number): Observable<any> {
+deleteClient(id: number): Observable<any> {
   return this.http.delete(`http://localhost:3000/clients/${id}`).pipe(
     map(response => {
       // Perform any transformation here if necessary
@@ -67,6 +67,32 @@ getUsers(): Observable<any> {
   );
 }
 
+getUserById(id: number): Observable<any> {
+  return this.http.get(`http://localhost:3000/users/${id}`).pipe(
+    map(response => {
+      // Perform any transformation here if necessary
+      return response;
+    })
+  );
+}
+
+deleteUser(id: number): Observable<any> {
+  return this.http.delete(`http://localhost:3000/users/${id}`).pipe(
+    map(response => {
+      // Perform any transformation here if necessary
+      return response;
+    })
+  );
+}
+
+createUser(id: number, client: ClientObject): Observable<any> {
+  return this.http.post(`http://localhost:3000/users/${id},`, client).pipe(
+    map(response => {
+      // Perform any transformation here if necessary
+      return response;
+    })
+  );
+}
 
 
 }
