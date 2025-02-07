@@ -21,6 +21,8 @@ export class UserDetailComponent {
 
   fetchSuccessful: boolean = true
 
+  clientName: string = ''
+
   user: UserObject = {
     id: 0,
     name: '',
@@ -38,7 +40,7 @@ export class UserDetailComponent {
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.getUserById(id);
-    })
+    });
   }
 
   getUserById(id: number): void {
@@ -53,6 +55,8 @@ export class UserDetailComponent {
         this.user.clientId = data.client_id; // directly map gid_range to gidRange
         this.user.description = data.description;
         this.user.comment = data.comment;
+
+        this.getClientNamebyId(this.user.clientId) // calling here because function is async
       },
       error => {
         this.fetchSuccessful = false
@@ -70,6 +74,18 @@ export class UserDetailComponent {
       error => {
         this.notificationService.showNotification('warning', 'There was a problem deleting the user.');
         console.error('Error fetching user', error);
+      }
+    );
+  }
+
+  getClientNamebyId(id: number) {
+    this.backendService.getClientNameById(id).subscribe(
+      data => {
+        this.clientName = data;
+      },
+      error => {
+        this.clientName = 'Not available'
+        console.error('Error fetching client name', error);
       }
     );
   }

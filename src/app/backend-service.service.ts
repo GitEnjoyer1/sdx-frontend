@@ -29,6 +29,12 @@ getClientById(id: number): Observable<any> {
   );
 }
 
+getClientNameById(id: number): Observable<string> {
+  return this.http.get<ClientObject>(`http://localhost:3000/clients/${id}`).pipe(
+    map((client: ClientObject) => client.name)
+  );
+}
+
 deleteClient(id: number): Observable<any> {
   return this.http.delete(`http://localhost:3000/clients/${id}`).pipe(
     map(response => {
