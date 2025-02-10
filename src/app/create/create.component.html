@@ -1,0 +1,33 @@
+<div class="header">
+    <div class="button-row">
+            <h1>Create a Client</h1>
+    </div>
+    <h4 class="sub-header">Fill out the fileds below and click the submit button to create a client.</h4>
+    <hr class="divider divider--mid-gray" aria-hidden="true">
+</div>
+
+<div class="form">
+    <sdx-input class="inputfield" label="Name">
+    </sdx-input>
+    <sdx-input class="inputfield" label="E-Mail" placeholder="name@example.com">
+    </sdx-input>
+    <sdx-input class="inputfield" label="UID-Range length" placeholder="1000" [(ngModel)]="uidRangeLength">
+        <span slot="infotip">rftgtgfirnf</span>
+    </sdx-input>
+    <sdx-input class="inputfield" label="GID-Range length" placeholder="1000">
+        <span slot="infotip">Some more information about the input field.</span>
+    </sdx-input>
+    <sdx-input class="inputfield" label="UID-Range" placeholder="">
+        <span slot="infotip">rftgtgfirnf</span>
+    </sdx-input>
+    <sdx-input class="inputfield" label="GID-Range" placeholder="2000-2200">
+        <span slot="infotip">Some more information about the input field.</span>
+    </sdx-input>
+    <button (click)="logLength()">Hello world</button>
+    <sdx-input class="inputfield" label="Description (optional)">
+        <span slot="infotip">Some more information about the input field.</span>
+    </sdx-input>
+    <sdx-input class="inputfield" label="Comment (optional)">
+        <span slot="infotip">Some more information about the input field.</span>
+    </sdx-input>
+</div>

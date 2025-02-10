@@ -11,13 +11,22 @@ export class BackendServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getClients(): Observable<any> {
-    return this.http.get('http://localhost:3000/clients').pipe(
-      map(response => {
-        // Perform any transformation here if necessary
-        return response;
-      })
-    );
+getClients(): Observable<any> {
+  return this.http.get<any>('http://localhost:3000/clients').pipe(
+    map(response => {
+      return response.map((client: any) => {
+        return {
+          id: client.id,
+          name: client.name,
+          email: client.email,
+          uidRange: client.uid_range,
+          gidRange: client.gid_range,
+          description: client.description,
+          comment: client.comment,
+        };
+      });
+    })
+  );
 }
 
 getClientById(id: number): Observable<any> {
