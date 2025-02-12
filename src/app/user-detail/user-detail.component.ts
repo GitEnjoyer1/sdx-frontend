@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, numberAttribute } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendServiceService } from '../backend-service.service';
 import { UserObject } from '../../utils/interfaces';
@@ -23,6 +23,8 @@ export class UserDetailComponent {
 
   clientName: string = ''
 
+  parentClientId: number = 0
+
   user: UserObject = {
     id: 0,
     name: '',
@@ -37,14 +39,24 @@ export class UserDetailComponent {
 
 
   ngOnInit() {
+    if (this.route.parent) {
+      this.route.parent.params.subscribe(params => {
+        const clientId = params['clientId'];
+        this.parentClientId = clientId
+      });
+    } else {
+      console.error('No parent route found');
+    }
     this.route.params.subscribe(params => {
-      const id = params['id'];
-      this.getUserById(id);
+      const userId = params['userId'];
+      this.getUserById(this.parentClientId, userId)
+      this.getClientNamebyId(this.parentClientId)
+
     });
   }
 
-  getUserById(id: number): void {
-    this.backendService.getUserById(id).subscribe(
+  getUserById(clientId: number, userId: number): void {
+    this.backendService.getUserById(clientId, userId).subscribe(
       data => {
         this.user.id = data.id;
         this.user.name = data.name;
@@ -55,11 +67,12 @@ export class UserDetailComponent {
         this.user.clientId = data.client_id; // directly map gid_range to gidRange
         this.user.description = data.description;
         this.user.comment = data.comment;
-
-        this.getClientNamebyId(this.user.clientId) // calling here because function is async
+        console.log("data: ", data)
       },
       error => {
         this.fetchSuccessful = false
+        console.log("error: ", error)
+
         console.error('Error fetching user', error);
       }
     );

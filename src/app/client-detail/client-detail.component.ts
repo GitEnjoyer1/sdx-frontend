@@ -1,24 +1,38 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, numberAttribute } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { BackendServiceService } from '../backend-service.service';
 import { ClientObject } from '../../utils/interfaces';
 import { NotificationService } from '../notification.service';
 import { CommonModule } from '@angular/common';
 import { ErrorPageComponent } from '../error-page/error-page.component';
+import { filter } from 'rxjs';
+import { UserDetailComponent } from '../user-detail/user-detail.component';
 
 @Component({
   selector: 'app-client-detail',
   standalone: true,
-  imports: [CommonModule, ErrorPageComponent],
+  imports: [CommonModule, ErrorPageComponent, RouterOutlet],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ClientDetailComponent {
+  
+  isUserDetailActive = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService){}
+  constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService){
+    router.events.pipe(
+      filter(e => e instanceof NavigationEnd)
+    ).subscribe(event => {
+      // Within subscribe block, events are ensured to be of type NavigationEnd
+      const navEnd = event as NavigationEnd;
+      this.isUserDetailActive = navEnd.urlAfterRedirects.includes('/user/');
+    });
+  }
 
-  fetchSuccessful: boolean = true
+  fetchSuccessful: boolean = true;
+  usersEmpty: boolean = false;
+
 
   client: ClientObject = {
     id: 0,
@@ -30,33 +44,49 @@ export class ClientDetailComponent {
     comment: ''
   };
 
-    users: any = {};
+  users: any = [];
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      const id = params['id'];
-      this.getClientById(id)
-    })
-    this.getUsers();
-  }
-
-  getClientById(id: number): void {
-    this.backendService.getClientById(id).subscribe(
-      data => {
-        this.client.id = data.id;
-        this.client.name = data.name;
-        this.client.email = data.email;
-        this.client.uidRange = data.uid_range; // directly map uid_range to uidRange
-        this.client.gidRange = data.gid_range; // directly map gid_range to gidRange
-        this.client.description = data.description;
-        this.client.comment = data.comment;
-      },
-      error => {
-        this.fetchSuccessful = false
-        console.error('Error fetching client', error);
+  async ngOnInit() {
+      this.route.params.subscribe(async params => {
+      const clientId = params['clientId'];
+      try {
+        await this.getClientById(clientId);
+        this.getUsers(clientId);
+      } catch (err) {
+        console.error('Error fetching client', err);
       }
-    );
+    })
   }
+
+  onActivate(event: any) {
+    if (event instanceof UserDetailComponent) {
+      this.isUserDetailActive = true;
+    } else {
+      this.isUserDetailActive = false;
+    }
+  }
+
+  getClientById(clientId: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.backendService.getClientById(clientId).subscribe(
+        data => {
+          this.client.id = data.id;
+          this.client.name = data.name;
+          this.client.email = data.email;
+          this.client.uidRange = data.uid_range; // directly map uid_range to uidRange
+          this.client.gidRange = data.gid_range; // directly map gid_range to gidRange
+          this.client.description = data.description;
+          this.client.comment = data.comment;
+          resolve();
+        },
+        error => {
+          // reject the promise if there's an error
+          reject(error);
+        }
+      );
+    });
+  }
+
 
   deleteClient(id: number): void {
     this.backendService.deleteClient(id).subscribe(
@@ -71,13 +101,16 @@ export class ClientDetailComponent {
     );
   }
 
-  getUsers(): void {
-    this.backendService.getUsers(this.client.id).subscribe(
+  getUsers(clientId: number): void {
+    this.backendService.getUsers(clientId).subscribe(
       data => {
         this.users = data;
-        console.log("here", )
+        if (this.users == false) {
+          this.usersEmpty = true;
+        }
       },
       error => {
+        this.fetchSuccessful = false
         console.error('Error fetching users', error);
       }
     );

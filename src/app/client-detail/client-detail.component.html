@@ -1,45 +1,59 @@
-<div *ngIf="fetchSuccessful" class="detailpage">
-    <div class="top-row">    
-        <h1>{{client.name}}</h1>     
-        <sdx-button-group>
-            <sdx-button label="Create"></sdx-button>
-            <sdx-button label="Edit"></sdx-button>
-            <sdx-button theme="secondary" label="Delete" (click)="deleteClient(client.id);"></sdx-button>
-        </sdx-button-group>    </div>
-    <h4>{{client.description}}</h4>
+
+<div *ngIf="!isUserDetailActive">
+        <div *ngIf="fetchSuccessful" class="detailpage">
+        <div class="top-row">    
+            <h1>{{client.name}}</h1>     
+            <sdx-button-group>
+                <sdx-button label="Create"></sdx-button>
+                <sdx-button label="Edit"></sdx-button>
+                <sdx-button theme="secondary" label="Delete" (click)="deleteClient(client.id);"></sdx-button>
+            </sdx-button-group>    </div>
+        <h4>{{client.description}}</h4>
 
 
-    <div class="details">
-        <div class="row">
-            <p class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{client.email}}</p>
-            <p class="col-xs">UID Range: {{client.uidRange[0]}} - {{client.uidRange[1]}}</p>
-            <p class="col-xs"></p>
+        <div class="details">
+            <div class="row">
+                <p class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{client.email}}</p>
+                <p class="col-xs">UID Range: {{client.uidRange[0]}} - {{client.uidRange[1]}}</p>
+                <p class="col-xs"></p>
+            </div>
+            <div class="row">
+                <p class="col-xs"><sdx-icon class="icon" icon-name="icon-speech-bubble" size="" sr-hint="Displays the user account"></sdx-icon> Comment: {{client.comment}}</p>
+                <p class="col-xs">GID Range: {{client.gidRange[0]}} - {{client.gidRange[1]}}</p>
+                <p class="col-xs"></p>
+            </div>
         </div>
-        <div class="row">
-            <p class="col-xs"><sdx-icon class="icon" icon-name="icon-speech-bubble" size="" sr-hint="Displays the user account"></sdx-icon> Comment: {{client.comment}}</p>
-            <p class="col-xs">GID Range: {{client.gidRange[0]}} - {{client.gidRange[1]}}</p>
-            <p class="col-xs"></p>
+        <hr class="divider divider--mid-gray" aria-hidden="true">
+
+        <div class="users">
+            <div *ngIf="!usersEmpty">
+                <div *ngFor="let user of users; let i = index;">
+                    <sdx-card class="card" label="{{user.name}}" label-aria-level="2" href="/user/{{user.id}}" href-label="Details" href-aria-label="Open new website.">
+                            <div class="row">
+                                    <div class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{user.email}}</div>
+                                    <div class="col-xs">UID: {{user.uid}}</div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs"><sdx-icon class="icon" icon-name="icon-laptop" size="" sr-hint="Displays the user account"></sdx-icon> Operating System: {{user.operatingSystem}}</div>
+                                    <div class="col-xs">GID: {{user.gid}}</div>
+                            </div>
+                    </sdx-card>
+            </div>
+            <div *ngIf="usersEmpty">
+                <h1>No users have been created for this Client, create one using the "Create" button.</h1>
+            </div>
+            
+        
+        </div>
         </div>
     </div>
-    <hr class="divider divider--mid-gray" aria-hidden="true">
 
-    <div class="users">
-        <div *ngFor="let user of users; let i = index;">
-            <sdx-card class="card" label="{{user.name}}" label-aria-level="2" href="/user/{{user.id}}" href-label="Details" href-aria-label="Open new website.">
-                    <div class="row">
-                            <div class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{user.email}}</div>
-                            <div class="col-xs">UID: {{user.uid}}</div>
-                    </div>
-                    <div class="row">
-                            <div class="col-xs"><sdx-icon class="icon" icon-name="icon-laptop" size="" sr-hint="Displays the user account"></sdx-icon> Operating System: {{user.operatingSystem}}</div>
-                            <div class="col-xs">GID: {{user.gid}}</div>
-                    </div>
-            </sdx-card>
+    <div *ngIf="!fetchSuccessful" class="error">
+        <app-error-page [type]="'fetchError'"></app-error-page>
+    </div>
     
-    </div>
-    </div>
 </div>
 
-<div *ngIf="!fetchSuccessful" class="error">
-    <app-error-page [type]="'fetchError'"></app-error-page>
+<div *ngIf="isUserDetailActive">
+    <router-outlet></router-outlet>
 </div>

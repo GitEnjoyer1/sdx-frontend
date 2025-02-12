@@ -63,7 +63,7 @@ createClients(id: number, client: ClientObject): Observable<any> {
 }
 
 getUsers(clientId: number): Observable<any> {
-  return this.http.get<any>(`http://localhost:3000/users?client_id=${clientId}`).pipe(
+  return this.http.get<any>(`http://localhost:3000/clients/${clientId}/users?client_id=${clientId}`).pipe(
     map(response => {
       return response.map((user: any) => {
         return {
@@ -82,9 +82,11 @@ getUsers(clientId: number): Observable<any> {
   );
 }
 
-getUserById(clientId: number): Observable<any> {
-  return this.http.get(`http://localhost:3000/users?client_id=${clientId}`).pipe(
+getUserById(clientId: number, userId: number): Observable<any> {
+  return this.http.get(`http://localhost:3000/clients/${clientId}/users?client_id=${clientId}&id=${userId}`).pipe(
     map(response => {
+      console.log(clientId, userId)
+      console.log(response)
       // Perform any transformation here if necessary
       return response;
     })
