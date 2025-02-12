@@ -62,8 +62,8 @@ createClients(id: number, client: ClientObject): Observable<any> {
   );
 }
 
-getUsers(): Observable<any> {
-  return this.http.get<any>('http://localhost:3000/users').pipe(
+getUsers(clientId: number): Observable<any> {
+  return this.http.get<any>(`http://localhost:3000/users?client_id=${clientId}`).pipe(
     map(response => {
       return response.map((user: any) => {
         return {
@@ -82,8 +82,8 @@ getUsers(): Observable<any> {
   );
 }
 
-getUserById(id: number): Observable<any> {
-  return this.http.get(`http://localhost:3000/users/${id}`).pipe(
+getUserById(clientId: number): Observable<any> {
+  return this.http.get(`http://localhost:3000/users?client_id=${clientId}`).pipe(
     map(response => {
       // Perform any transformation here if necessary
       return response;
@@ -91,8 +91,8 @@ getUserById(id: number): Observable<any> {
   );
 }
 
-deleteUser(id: number): Observable<any> {
-  return this.http.delete(`http://localhost:3000/users/${id}`).pipe(
+deleteUser(clientId: number): Observable<any> {
+  return this.http.delete(`http://localhost:3000/users?client_id=${clientId}`).pipe(
     map(response => {
       // Perform any transformation here if necessary
       return response;
@@ -100,8 +100,8 @@ deleteUser(id: number): Observable<any> {
   );
 }
 
-createUser(id: number, client: ClientObject): Observable<any> {
-  return this.http.post(`http://localhost:3000/users/${id},`, client).pipe(
+createUser(clientId: number, client: ClientObject): Observable<any> {
+  return this.http.post(`http://localhost:3000/users?client_id=${clientId},`, client).pipe(
     map(response => {
       // Perform any transformation here if necessary
       return response;

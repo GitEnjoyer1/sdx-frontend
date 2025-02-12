@@ -72,9 +72,10 @@ export class ClientDetailComponent {
   }
 
   getUsers(): void {
-    this.backendService.getUsers().subscribe(
+    this.backendService.getUsers(this.client.id).subscribe(
       data => {
         this.users = data;
+        console.log("here", )
       },
       error => {
         console.error('Error fetching users', error);
