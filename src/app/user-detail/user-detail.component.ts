@@ -58,6 +58,8 @@ export class UserDetailComponent {
   getUserById(clientId: number, userId: number): void {
     this.backendService.getUserById(clientId, userId).subscribe(
       data => {
+        console.log("data: ", data, clientId, userId)
+
         this.user.id = data.id;
         this.user.name = data.name;
         this.user.email = data.email;
@@ -67,7 +69,6 @@ export class UserDetailComponent {
         this.user.clientId = data.client_id; // directly map gid_range to gidRange
         this.user.description = data.description;
         this.user.comment = data.comment;
-        console.log("data: ", data)
       },
       error => {
         this.fetchSuccessful = false
@@ -78,10 +79,12 @@ export class UserDetailComponent {
     );
   }
 
-  deleteUser(id: number): void {
-    this.backendService.deleteUser(id).subscribe(
+  deleteUser(clientId: number, userId: number): void {
+    this.backendService.deleteUser(clientId, userId).subscribe(
       data => {
-        this.router.navigate([`/client/${this.user.clientId}`]);
+        this.router.navigate([`/client/${this.user.clientId}`]).then(() => {
+          this.reloadCurrentRoute();
+      });
         this.notificationService.showNotification('confirmation', `Successfully deleted the user ${this.user.name}`)
       },
       error => {
@@ -101,6 +104,13 @@ export class UserDetailComponent {
         console.error('Error fetching client name', error);
       }
     );
+  }
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
   }
 
 }

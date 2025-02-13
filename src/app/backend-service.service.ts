@@ -83,18 +83,16 @@ getUsers(clientId: number): Observable<any> {
 }
 
 getUserById(clientId: number, userId: number): Observable<any> {
-  return this.http.get(`http://localhost:3000/clients/${clientId}/users?client_id=${clientId}&id=${userId}`).pipe(
+  return this.http.get(`http://localhost:3000/clients/${clientId}/users/${userId}?client_id=${clientId}&id=${userId}`).pipe(
     map(response => {
-      console.log(clientId, userId)
-      console.log(response)
       // Perform any transformation here if necessary
       return response;
     })
   );
 }
 
-deleteUser(clientId: number): Observable<any> {
-  return this.http.delete(`http://localhost:3000/users?client_id=${clientId}`).pipe(
+deleteUser(clientId: number, userId: number): Observable<any> {
+  return this.http.delete(`http://localhost:3000/clients/${clientId}/users/${userId}?client_id=${clientId}&id=${userId}`).pipe(
     map(response => {
       // Perform any transformation here if necessary
       return response;
@@ -110,6 +108,5 @@ createUser(clientId: number, client: ClientObject): Observable<any> {
     })
   );
 }
-
 
 }

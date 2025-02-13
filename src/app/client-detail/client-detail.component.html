@@ -4,9 +4,9 @@
         <div class="top-row">    
             <h1>{{client.name}}</h1>     
             <sdx-button-group>
-                <sdx-button label="Create"></sdx-button>
-                <sdx-button label="Edit"></sdx-button>
-                <sdx-button theme="secondary" label="Delete" (click)="deleteClient(client.id);"></sdx-button>
+                <sdx-button label="Create User" icon-name="icon-plus"></sdx-button>
+                <sdx-button label="Edit" icon-name="icon-edit"></sdx-button>
+                <sdx-button theme="secondary" label="Delete" (click)="deleteClient(client.id);" icon-name="icon-bin"></sdx-button>
             </sdx-button-group>    </div>
         <h4>{{client.description}}</h4>
 
@@ -26,9 +26,14 @@
         <hr class="divider divider--mid-gray" aria-hidden="true">
 
         <div class="users">
+            <div *ngIf="usersEmpty" class="users-empty gray-tint-3">
+                <sdx-icon class="icon users-empty-icon" icon-name="icon-robot-confused" size="6" sr-hint="Displays confused robot"></sdx-icon>
+                
+                <h3>No users have been created for this Client, create one using the "Create" button.</h3>
+            </div>
             <div *ngIf="!usersEmpty">
                 <div *ngFor="let user of users; let i = index;">
-                    <sdx-card class="card" label="{{user.name}}" label-aria-level="2" href="/user/{{user.id}}" href-label="Details" href-aria-label="Open new website.">
+                    <sdx-card class="card" label="{{user.name}}" label-aria-level="2" href="client/{{client.id}}/user/{{user.id}}" href-label="Details" href-aria-label="Open new website.">
                             <div class="row">
                                     <div class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{user.email}}</div>
                                     <div class="col-xs">UID: {{user.uid}}</div>
@@ -38,13 +43,8 @@
                                     <div class="col-xs">GID: {{user.gid}}</div>
                             </div>
                     </sdx-card>
+                </div>
             </div>
-            <div *ngIf="usersEmpty">
-                <h1>No users have been created for this Client, create one using the "Create" button.</h1>
-            </div>
-            
-        
-        </div>
         </div>
     </div>
 

@@ -3,7 +3,7 @@
         <h1>{{user.name}}</h1>     
         <sdx-button-group>
             <sdx-button label="Edit"></sdx-button>
-            <sdx-button theme="secondary" label="Delete" (click)="deleteUser(user.id);" ></sdx-button>
+            <sdx-button theme="secondary" label="Delete" (click)="deleteUser(parentClientId, user.id);" ></sdx-button>
         </sdx-button-group>    
     </div>
     <h4>{{user.description}}</h4>
