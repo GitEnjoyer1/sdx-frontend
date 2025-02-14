@@ -1,345 +1,390 @@
 {
   "clients": [
     {
-      "id": 1,
-      "name": "Siemens AG",
-      "email": "info@siemens.com",
-      "uid_range": [
-        1001,
-        2000
-      ],
-      "gid_range": [
-        2001,
-        3000
-      ],
-      "description": "Siemens AG is a globally operating electronics company",
-      "comment": "No special notes"
+        "id": 1,
+        "name": "Siemens AG",
+        "email": "info@siemens.com",
+        "uid_range": [
+            1001,
+            2000
+        ],
+        "gid_range": [
+            2001,
+            3000
+        ],
+        "description": "Siemens AG is a globally operating electronics company",
+        "comment": "No special notes"
     },
     {
-      "id": 2,
-      "name": "Bosch GmbH",
-      "email": "info@bosch.com",
-      "uid_range": [
-        2001,
-        3000
-      ],
-      "gid_range": [
-        3001,
-        4000
-      ],
-      "description": "Bosch GmbH is an international manufacturer of household appliances and automotive components",
-      "comment": "Insert test notes here"
+        "id": 2,
+        "name": "Bosch GmbH",
+        "email": "info@bosch.com",
+        "uid_range": [
+            2001,
+            3000
+        ],
+        "gid_range": [
+            3001,
+            4000
+        ],
+        "description": "Bosch GmbH is an international manufacturer of household appliances and automotive components",
+        "comment": "Insert test notes here"
     },
     {
-      "id": 4,
-      "name": "UBS Group AG",
-      "email": "info@ubs.com",
-      "uid_range": [
-        4001,
-        5000
-      ],
-      "gid_range": [
-        5001,
-        6000
-      ],
-      "description": "UBS Group AG is a major Swiss bank based in Zurich",
-      "comment": "Development environment"
+        "id": 3,
+        "name": "Novartis AG",
+        "email": "info@novartis.com",
+        "uid_range": [
+            3001,
+            4000
+        ],
+        "gid_range": [
+            4001,
+            5000
+        ],
+        "description": "Novartis AG is a global leader in healthcare",
+        "comment": "In Beta phase"
     },
     {
-      "id": 5,
-      "name": "Roche Holding AG",
-      "email": "info@roche.com",
-      "uid_range": [
-        5001,
-        6000
-      ],
-      "gid_range": [
-        6001,
-        7000
-      ],
-      "description": "Roche Holding AG is a Swiss healthcare company",
-      "comment": "QA environment"
+        "id": 4,
+        "name": "UBS Group AG",
+        "email": "info@ubs.com",
+        "uid_range": [
+            4001,
+            5000
+        ],
+        "gid_range": [
+            5001,
+            6000
+        ],
+        "description": "UBS Group AG is a major Swiss bank based in Zurich",
+        "comment": "Development environment"
     },
     {
-      "id": 7,
-      "name": "Deutsche Bank AG",
-      "email": "info@deutsche-bank.com",
-      "uid_range": [
-        7001,
-        8000
-      ],
-      "gid_range": [
-        8001,
-        9000
-      ],
-      "description": "Deutsche Bank AG is a globally active financial service provider",
-      "comment": "Staging environment, last step before production"
+        "id": 5,
+        "name": "Roche Holding AG",
+        "email": "info@roche.com",
+        "uid_range": [
+            5001,
+            6000
+        ],
+        "gid_range": [
+            6001,
+            7000
+        ],
+        "description": "Roche Holding AG is a Swiss healthcare company",
+        "comment": "QA environment"
+    },
+    {
+        "id": 6,
+        "name": "ABB Ltd",
+        "email": "info@abb.com",
+        "uid_range": [
+            6001,
+            7000
+        ],
+        "gid_range": [
+            7001,
+            8000
+        ],
+        "description": "ABB Ltd is a Swiss-Swedish electrical engineering corporation",
+        "comment": "For load testing purposes"
+    },
+    {
+        "id": 7,
+        "name": "Deutsche Bank AG",
+        "email": "info@deutsche-bank.com",
+        "uid_range": [
+            7001,
+            8000
+        ],
+        "gid_range": [
+            8001,
+            9000
+        ],
+        "description": "Deutsche Bank AG is a globally active financial service provider",
+        "comment": "Staging environment, last step before production"
+    },
+    {
+        "id": 8,
+        "name": "Bayer AG",
+        "email": "info@bayer.com",
+        "uid_range": [
+            8001,
+            9000
+        ],
+        "gid_range": [
+            9001,
+            10000
+        ],
+        "description": "Bayer AG is a life science company with core competencies in the areas of health and agriculture",
+        "comment": "Backup client"
     }
   ],
   "users": [
     {
-      "id": 1,
-      "name": "Emilia Hoffmann",
-      "email": "user1@example.com",
-      "uid": 1541,
-      "gid": 2021,
-      "operating_system": "Arch Linux",
-      "client_id": 1,
-      "description": "Ein Administrator.",
-      "comment": "Sehr zuverlässig."
+        "id": 1,
+        "name": "Emilia Hoffmann",
+        "email": "user1@example.com",
+        "uid": 1001,
+        "gid": 2001,
+        "os": "Arch Linux",
+        "client_id": 1,
+        "description": "Ein Administrator.",
+        "comment": "Sehr zuverlässig."
     },
     {
-      "id": 2,
-      "name": "Mia Wagner",
-      "email": "user2@example.com",
-      "uid": 1821,
-      "gid": 2009,
-      "operating_system": "Arch Linux",
-      "client_id": 1,
-      "description": "Ein neuer Benutzer.",
-      "comment": "Hat kürzlich beigetreten."
+        "id": 2,
+        "name": "Mia Wagner",
+        "email": "user2@example.com",
+        "uid": 1002,
+        "gid": 2002,
+        "os": "Arch Linux",
+        "client_id": 1,
+        "description": "Ein neuer Benutzer.",
+        "comment": "Hat kürzlich beigetreten."
     },
     {
-      "id": 3,
-      "name": "Sophia Fischer",
-      "email": "user3@example.com",
-      "uid": 1626,
-      "gid": 2891,
-      "operating_system": "Fedora",
-      "client_id": 1,
-      "description": "Ein Tester.",
-      "comment": "Sehr zuverlässig."
+        "id": 3,
+        "name": "Sophia Fischer",
+        "email": "user3@example.com",
+        "uid": 1003,
+        "gid": 2003,
+        "os": "Fedora",
+        "client_id": 1,
+        "description": "Ein Tester.",
+        "comment": "Sehr zuverlässig."
     },
     {
-      "id": 4,
-      "name": "Paul Becker",
-      "email": "user4@example.com",
-      "uid": 2725,
-      "gid": 3376,
-      "operating_system": "Fedora",
-      "client_id": 2,
-      "description": "Ein Administrator.",
-      "comment": "Hat eingeschränkten Zugriff."
+        "id": 4,
+        "name": "Paul Becker",
+        "email": "user4@example.com",
+        "uid": 2001,
+        "gid": 3001,
+        "os": "Fedora",
+        "client_id": 2,
+        "description": "Ein Administrator.",
+        "comment": "Hat eingeschränkten Zugriff."
     },
     {
-      "id": 5,
-      "name": "Mia Wagner",
-      "email": "user5@example.com",
-      "uid": 2904,
-      "gid": 3340,
-      "operating_system": "Ubuntu",
-      "client_id": 2,
-      "description": "Ein neuer Benutzer.",
-      "comment": "Hat kürzlich beigetreten."
+        "id": 5,
+        "name": "Mia Wagner",
+        "email": "user5@example.com",
+        "uid": 2002,
+        "gid": 3002,
+        "os": "Ubuntu",
+        "client_id": 2,
+        "description": "Ein neuer Benutzer.",
+        "comment": "Hat kürzlich beigetreten."
     },
     {
-      "id": 6,
-      "name": "Lukas Müller",
-      "email": "user6@example.com",
-      "uid": 2982,
-      "gid": 3863,
-      "operating_system": "Manjaro",
-      "client_id": 2,
-      "description": "Ein Administrator.",
-      "comment": "Benötigt weitere Schulung."
+        "id": 6,
+        "name": "Lukas Müller",
+        "email": "user6@example.com",
+        "uid": 2003,
+        "gid": 3003,
+        "os": "Manjaro",
+        "client_id": 2,
+        "description": "Ein Administrator.",
+        "comment": "Benötigt weitere Schulung."
     },
     {
-      "id": 7,
-      "name": "Mia Wagner",
-      "email": "user7@example.com",
-      "uid": 3241,
-      "gid": 4266,
-      "operating_system": "Debian",
-      "client_id": 3,
-      "description": "Ein erfahrener Benutzer.",
-      "comment": "Hat Zugriff auf alle Ressourcen."
+        "id": 7,
+        "name": "Mia Wagner",
+        "email": "user7@example.com",
+        "uid": 3001,
+        "gid": 4001,
+        "os": "Debian",
+        "client_id": 3,
+        "description": "Ein erfahrener Benutzer.",
+        "comment": "Hat Zugriff auf alle Ressourcen."
     },
     {
-      "id": 8,
-      "name": "Maximilian Weber",
-      "email": "user8@example.com",
-      "uid": 3348,
-      "gid": 4895,
-      "operating_system": "Fedora",
-      "client_id": 3,
-      "description": "Ein neuer Benutzer.",
-      "comment": "Hat eingeschränkten Zugriff."
+        "id": 8,
+        "name": "Maximilian Weber",
+        "email": "user8@example.com",
+        "uid": 3002,
+        "gid": 4002,
+        "os": "Fedora",
+        "client_id": 3,
+        "description": "Ein neuer Benutzer.",
+        "comment": "Hat eingeschränkten Zugriff."
     },
     {
-      "id": 9,
-      "name": "Sophia Fischer",
-      "email": "user9@example.com",
-      "uid": 3296,
-      "gid": 4645,
-      "operating_system": "Debian",
-      "client_id": 3,
-      "description": "Ein Entwickler.",
-      "comment": "Hat kürzlich beigetreten."
+        "id": 9,
+        "name": "Sophia Fischer",
+        "email": "user9@example.com",
+        "uid": 3003,
+        "gid": 4003,
+        "os": "Debian",
+        "client_id": 3,
+        "description": "Ein Entwickler.",
+        "comment": "Hat kürzlich beigetreten."
     },
     {
-      "id": 10,
-      "name": "Sophia Fischer",
-      "email": "user10@example.com",
-      "uid": 4778,
-      "gid": 5110,
-      "operating_system": "CentOS",
-      "client_id": 4,
-      "description": "Ein Tester.",
-      "comment": "Hat kürzlich beigetreten."
+        "id": 10,
+        "name": "Sophia Fischer",
+        "email": "user10@example.com",
+        "uid": 4001,
+        "gid": 5001,
+        "os": "CentOS",
+        "client_id": 4,
+        "description": "Ein Tester.",
+        "comment": "Hat kürzlich beigetreten."
     },
     {
-      "id": 11,
-      "name": "Mia Wagner",
-      "email": "user11@example.com",
-      "uid": 4917,
-      "gid": 5226,
-      "operating_system": "Manjaro",
-      "client_id": 4,
-      "description": "Ein Administrator.",
-      "comment": "Sehr zuverlässig."
+        "id": 11,
+        "name": "Mia Wagner",
+        "email": "user11@example.com",
+        "uid": 4002,
+        "gid": 5002,
+        "os": "Manjaro",
+        "client_id": 4,
+        "description": "Ein Administrator.",
+        "comment": "Sehr zuverlässig."
     },
     {
-      "id": 12,
-      "name": "Anna Schmidt",
-      "email": "user12@example.com",
-      "uid": 4475,
-      "gid": 5049,
-      "operating_system": "Red Hat",
-      "client_id": 4,
-      "description": "Ein Administrator.",
-      "comment": "Sehr zuverlässig."
+        "id": 12,
+        "name": "Anna Schmidt",
+        "email": "user12@example.com",
+        "uid": 4003,
+        "gid": 5003,
+        "os": "Red Hat",
+        "client_id": 4,
+        "description": "Ein Administrator.",
+        "comment": "Sehr zuverlässig."
     },
     {
-      "id": 13,
-      "name": "Paul Becker",
-      "email": "user13@example.com",
-      "uid": 5550,
-      "gid": 6639,
-      "operating_system": "Manjaro",
-      "client_id": 5,
-      "description": "Ein Administrator.",
-      "comment": "Hat eingeschränkten Zugriff."
+        "id": 13,
+        "name": "Paul Becker",
+        "email": "user13@example.com",
+        "uid": 5001,
+        "gid": 6001,
+        "os": "Manjaro",
+        "client_id": 5,
+        "description": "Ein Administrator.",
+        "comment": "Hat eingeschränkten Zugriff."
     },
     {
-      "id": 14,
-      "name": "Leon Schneider",
-      "email": "user14@example.com",
-      "uid": 5929,
-      "gid": 6516,
-      "operating_system": "Fedora",
-      "client_id": 5,
-      "description": "Ein Tester.",
-      "comment": "Sehr zuverlässig."
+        "id": 14,
+        "name": "Leon Schneider",
+        "email": "user14@example.com",
+        "uid": 5002,
+        "gid": 6002,
+        "os": "Fedora",
+        "client_id": 5,
+        "description": "Ein Tester.",
+        "comment": "Sehr zuverlässig."
     },
     {
-      "id": 15,
-      "name": "Sophia Fischer",
-      "email": "user15@example.com",
-      "uid": 5783,
-      "gid": 6046,
-      "operating_system": "Fedora",
-      "client_id": 5,
-      "description": "Ein neuer Benutzer.",
-      "comment": "Hat Zugriff auf alle Ressourcen."
+        "id": 15,
+        "name": "Sophia Fischer",
+        "email": "user15@example.com",
+        "uid": 5003,
+        "gid": 6003,
+        "os": "Fedora",
+        "client_id": 5,
+        "description": "Ein neuer Benutzer.",
+        "comment": "Hat Zugriff auf alle Ressourcen."
     },
     {
-      "id": 16,
-      "name": "Mia Wagner",
-      "email": "user16@example.com",
-      "uid": 6484,
-      "gid": 7704,
-      "operating_system": "Manjaro",
-      "client_id": 6,
-      "description": "Ein Administrator.",
-      "comment": "Hat eingeschränkten Zugriff."
+        "id": 16,
+        "name": "Mia Wagner",
+        "email": "user16@example.com",
+        "uid": 6001,
+        "gid": 7001,
+        "os": "Manjaro",
+        "client_id": 6,
+        "description": "Ein Administrator.",
+        "comment": "Hat eingeschränkten Zugriff."
     },
     {
-      "id": 17,
-      "name": "Mia Wagner",
-      "email": "user17@example.com",
-      "uid": 6179,
-      "gid": 7290,
-      "operating_system": "Red Hat",
-      "client_id": 6,
-      "description": "Ein neuer Benutzer.",
-      "comment": "Hat eingeschränkten Zugriff."
+        "id": 17,
+        "name": "Mia Wagner",
+        "email": "user17@example.com",
+        "uid": 6002,
+        "gid": 7002,
+        "os": "Red Hat",
+        "client_id": 6,
+        "description": "Ein neuer Benutzer.",
+        "comment": "Hat eingeschränkten Zugriff."
     },
     {
-      "id": 18,
-      "name": "Lukas Müller",
-      "email": "user18@example.com",
-      "uid": 6734,
-      "gid": 7898,
-      "operating_system": "openSUSE",
-      "client_id": 6,
-      "description": "Ein Administrator.",
-      "comment": "Hat kürzlich beigetreten."
+        "id": 18,
+        "name": "Lukas Müller",
+        "email": "user18@example.com",
+        "uid": 6003,
+        "gid": 7003,
+        "os": "openSUSE",
+        "client_id": 6,
+        "description": "Ein Administrator.",
+        "comment": "Hat kürzlich beigetreten."
     },
     {
-      "id": 19,
-      "name": "Paul Becker",
-      "email": "user19@example.com",
-      "uid": 7425,
-      "gid": 8020,
-      "operating_system": "Manjaro",
-      "client_id": 7,
-      "description": "Ein Entwickler.",
-      "comment": "Hat eingeschränkten Zugriff."
+        "id": 19,
+        "name": "Paul Becker",
+        "email": "user19@example.com",
+        "uid": 7001,
+        "gid": 8001,
+        "os": "Manjaro",
+        "client_id": 7,
+        "description": "Ein Entwickler.",
+        "comment": "Hat eingeschränkten Zugriff."
     },
     {
-      "id": 20,
-      "name": "Lukas Müller",
-      "email": "user20@example.com",
-      "uid": 7925,
-      "gid": 8174,
-      "operating_system": "Debian",
-      "client_id": 7,
-      "description": "Ein Tester.",
-      "comment": "Sehr zuverlässig."
+        "id": 20,
+        "name": "Lukas Müller",
+        "email": "user20@example.com",
+        "uid": 7002,
+        "gid": 8002,
+        "os": "Debian",
+        "client_id": 7,
+        "description": "Ein Tester.",
+        "comment": "Sehr zuverlässig."
     },
     {
-      "id": 21,
-      "name": "Paul Becker",
-      "email": "user21@example.com",
-      "uid": 7624,
-      "gid": 8568,
-      "operating_system": "Red Hat",
-      "client_id": 7,
-      "description": "Ein erfahrener Benutzer.",
-      "comment": "Hat Zugriff auf alle Ressourcen."
+        "id": 21,
+        "name": "Paul Becker",
+        "email": "user21@example.com",
+        "uid": 7003,
+        "gid": 8003,
+        "os": "Red Hat",
+        "client_id": 7,
+        "description": "Ein erfahrener Benutzer.",
+        "comment": "Hat Zugriff auf alle Ressourcen."
     },
     {
-      "id": 22,
-      "name": "Lukas Müller",
-      "email": "user22@example.com",
-      "uid": 8411,
-      "gid": 9446,
-      "operating_system": "Ubuntu",
-      "client_id": 8,
-      "description": "Ein neuer Benutzer.",
-      "comment": "Hat eingeschränkten Zugriff."
+        "id": 22,
+        "name": "Lukas Müller",
+        "email": "user22@example.com",
+        "uid": 8001,
+        "gid": 9001,
+        "os": "Ubuntu",
+        "client_id": 8,
+        "description": "Ein neuer Benutzer.",
+        "comment": "Hat eingeschränkten Zugriff."
     },
     {
-      "id": 23,
-      "name": "Mia Wagner",
-      "email": "user23@example.com",
-      "uid": 8430,
-      "gid": 9060,
-      "operating_system": "Ubuntu",
-      "client_id": 8,
-      "description": "Ein neuer Benutzer.",
-      "comment": "Benötigt weitere Schulung."
+        "id": 23,
+        "name": "Mia Wagner",
+        "email": "user23@example.com",
+        "uid": 8002,
+        "gid": 9002,
+        "os": "Ubuntu",
+        "client_id": 8,
+        "description": "Ein neuer Benutzer.",
+        "comment": "Benötigt weitere Schulung."
     },
     {
-      "id": 24,
-      "name": "Sophia Fischer",
-      "email": "user24@example.com",
-      "uid": 8351,
-      "gid": 9798,
-      "operating_system": "CentOS",
-      "client_id": 8,
-      "description": "Ein Entwickler.",
-      "comment": "Sehr zuverlässig."
+        "id": 24,
+        "name": "Sophia Fischer",
+        "email": "user24@example.com",
+        "uid": 8003,
+        "gid": 9003,
+        "os": "CentOS",
+        "client_id": 8,
+        "description": "Ein Entwickler.",
+        "comment": "Sehr zuverlässig."
     }
   ]
 }
