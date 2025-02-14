@@ -19,6 +19,7 @@ import { UserDetailComponent } from '../user-detail/user-detail.component';
 export class ClientDetailComponent {
   
   isUserDetailActive = false;
+  isCreateUserActive = false
 
   constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService){
     router.events.pipe(
@@ -27,6 +28,8 @@ export class ClientDetailComponent {
       // Within subscribe block, events are ensured to be of type NavigationEnd
       const navEnd = event as NavigationEnd;
       this.isUserDetailActive = navEnd.urlAfterRedirects.includes('/user/');
+      this.isCreateUserActive = navEnd.urlAfterRedirects.includes('/create-user');
+
     });
   }
 

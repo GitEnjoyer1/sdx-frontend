@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { ClientObject, CreateClientObject } from '../../utils/interfaces';
+import { ClientObject, CreateClientObject, CreateUserObject } from '../../utils/interfaces';
+import { CreateUserComponent } from '../create-user/create-user.component';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,17 @@ getClientNameById(clientId: number): Observable<string> {
   );
 }
 
+getClientRangesById(clientId: number): Observable<{ uid_range: number[]; gid_range: number[]; }> {
+  return this.http.get<any>(`http://localhost:3000/clients/${clientId}`).pipe(
+    map((client: any) => {
+      return {
+        uid_range: client.uid_range,
+        gid_range: client.gid_range
+      };})
+  )
+}
+
+
 deleteClient(clientId: number): Observable<any> {
   return this.http.delete(`http://localhost:3000/clients/${clientId}`).pipe(
     map(response => {
@@ -73,6 +85,7 @@ createClient(client: CreateClientObject): Observable<any> {
 getUsers(clientId: number): Observable<any> {
   return this.http.get<any>(`http://localhost:3000/clients/${clientId}/users?client_id=${clientId}`).pipe(
     map(response => {
+      console.log(`http://localhost:3000/clients/${clientId}/users?client_id=${clientId}`)
       return response.map((user: any) => {
         return {
           id: user.id,
@@ -84,6 +97,19 @@ getUsers(clientId: number): Observable<any> {
           clientId: user.client_id,
           description: user.description,
           comment: user.comment,
+        };
+      });
+    })
+  );
+}
+
+getUsersIds(clientId: number): Observable<any> {
+  return this.http.get<any>(`http://localhost:3000/clients/${clientId}/users?client_id=${clientId}`).pipe(
+    map(response => {
+      return response.map((user: any) => {
+        return {
+          uid: user.uid,
+          gid: user.gid,
         };
       });
     })
@@ -108,8 +134,22 @@ deleteUser(clientId: number, userId: number): Observable<any> {
   );
 }
 
-createUser(clientId: number, client: ClientObject): Observable<any> {
-  return this.http.post(`http://localhost:3000/users?client_id=${clientId},`, client).pipe(
+
+
+createUser(clientId: number, user: CreateUserObject): Observable<any> {
+  console.log("logging user ",user)
+  const userSnakeCase = {
+    name: user.name,
+    email: user.email,
+    uid: user.uid,
+    gid: user.gid,
+    operating_system: user.operatingSystem,
+    client_id: user.clientId,
+    description: user.description,
+    comment: user.comment
+  };
+  console.log("loggin snakecase", userSnakeCase)
+  return this.http.post(`http://localhost:3000/clients/${clientId}/users`, userSnakeCase).pipe(
     map(response => {
       // Perform any transformation here if necessary
       return response;

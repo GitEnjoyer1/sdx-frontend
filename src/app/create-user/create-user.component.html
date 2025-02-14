@@ -1,0 +1,44 @@
+<div class="header">
+    <div class="button-row">
+            <h1>Create a User</h1>
+    </div>
+    <h4 class="sub-header">Fill out the fileds below and click the "Create user" button to create a new user.</h4>
+    <hr class="divider divider--mid-gray" aria-hidden="true">
+</div>
+
+<form class="create-form">
+    <sdx-input class="inputfield" label="Name" [(ngModel)]="newUser.name" name="newClient name" ngDefaultControl [valid]="isFilledOut(newUser.name)" [validationMessage]="(isFilledOut(newUser.name) !== false) ? '' : 'Please enter a name'">
+    </sdx-input>
+    <sdx-input class="inputfield" label="E-Mail" placeholder="name@example.com" [(ngModel)]="newUser.email" name="newClient email" ngDefaultControl [valid]="isValidEmail(newUser.email) && isValidEmail(newUser.email)" [validationMessage]="(isValidEmail(newUser.email) !== false) ? '' : 'Please enter a valid email'">
+    </sdx-input>
+    <div class="container-range-length container-first-range-length">
+        <sdx-input class="inputfield-range-length" label="UID" readonly [(ngModel)]="newUser.uid" name="uidRangeLength" ngDefaultControl [valid]="isValidUid(newUser.uid)" [validationMessage]="(isValidUid(newUser.uid) !== false) ? '' : 'Please get a UID using the `Get UID` button'">
+            <span slot="infotip">This is your assigned UID</span>        
+        </sdx-input>
+        <sdx-button class="button-range-length" label="Get UID" (click)="setUid()"></sdx-button>
+    </div>
+    <div class="container-range-length">
+        <sdx-input class="inputfield-range-length" label="GID" readonly [(ngModel)]="newUser.gid" name="gidRangeLength" ngDefaultControl [valid]="isValidGid(newUser.gid)" [validationMessage]="(isValidGid(newUser.gid) !== false) ? '' : 'Please get a GID using the `Get GID` button'">
+            <span slot="infotip">This is your assigned GID</span>
+        </sdx-input>
+        <sdx-button class="button-range-length" label="Get GID" (click)="setGid()"></sdx-button>
+    </div>
+    <sdx-input class="inputfield" label="Operating System" [(ngModel)]="newUser.operatingSystem" name="newClient description" ngDefaultControl [valid]="isFilledOut(newUser.operatingSystem)" [validationMessage]="(isFilledOut(newUser.operatingSystem) !== false) ? '' : 'Please enter an operating system'">
+    </sdx-input>
+    <sdx-input class="inputfield" label="Description (optional)" [(ngModel)]="newUser.description" name="newClient description" ngDefaultControl>
+    </sdx-input>
+    <sdx-input class="inputfield" label="Comment (optional)" [(ngModel)]="newUser.comment" name="newClient comment" ngDefaultControl>
+    </sdx-input>
+    <div class="inputfield">
+    </div>
+    
+
+</form>
+
+<div class="button-group">
+    <sdx-button-group>
+        <sdx-button class="button-create-client" label="Create user" (click)="createUser()" ></sdx-button>
+        <sdx-button class="button-back" theme="secondary" label="Back" (click)="moveBack()" ></sdx-button>
+    </sdx-button-group>
+    
+</div>

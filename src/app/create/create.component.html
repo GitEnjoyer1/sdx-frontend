@@ -2,7 +2,7 @@
     <div class="button-row">
             <h1>Create a Client</h1>
     </div>
-    <h4 class="sub-header">Fill out the fileds below and click the submit button to create a client.</h4>
+    <h4 class="sub-header">Fill out the fileds below and click the "Create client" button to create a new client.</h4>
     <hr class="divider divider--mid-gray" aria-hidden="true">
 </div>
 
@@ -13,28 +13,26 @@
     </sdx-input>
     <div class="container-range-length container-first-range-length">
         <sdx-input class="inputfield-range-length" label="UID-Range length" placeholder="1000" [(ngModel)]="uidRangeLength" name="uidRangeLength" ngDefaultControl [valid]="isValidRangeLength(uidRangeLength) && uidRangeLength <= 5000" [validationMessage]="(isValidRangeLength(uidRangeLength) !== false) ? '' : 'Please enter a valid range between 1 - 5000'">
-            <span slot="infotip">Specify the length of the UID-Range</span>
+            <span slot="infotip">Specify the length of the UID-Range between 1 and 5000</span>        
         </sdx-input>
         <sdx-button class="button-range-length" label="Get UID-Range" (click)="setUidRange()"></sdx-button>
     </div>
     <div class="container-range-length">
         <sdx-input class="inputfield-range-length" label="GID-Range length" placeholder="1000" [(ngModel)]="gidRangeLength" name="gidRangeLength" ngDefaultControl [valid]="isValidRangeLength(gidRangeLength) && gidRangeLength <= 5000" [validationMessage]="(isValidRangeLength(gidRangeLength) !== false) ? '' : 'Please enter a range between 1 - 5000'">
-            <span slot="infotip">Specify the length of the GID-Range</span>
+            <span slot="infotip">Specify the length of the GID-Range between 1 and 5000</span>
         </sdx-input>
         <sdx-button class="button-range-length" label="Get GID-Range" (click)="setGidRange()" ></sdx-button>
 
     </div>
     <sdx-input class="inputfield" label="UID-Range" [value]="newClient.uidRange[0] + '-' + newClient.uidRange[1]" readonly name="newClient uidRange" ngDefaultControl [valid]="isValidRange(newClient.uidRange)">
-        <span slot="infotip">rftgtgfirnf</span>
+        <span slot="infotip">This is your assigned UID-Range</span>
     </sdx-input>
     <sdx-input class="inputfield" label="GID-Range" readonly [value]="newClient.gidRange[0] + '-' + newClient.gidRange[1]" name="newClient gidRange" ngDefaultControl [valid]="isValidRange(newClient.gidRange)">
-        <span slot="infotip">Some more information about the input field.</span>
+        <span slot="infotip">This is your assigned GID-Range</span>
     </sdx-input>
     <sdx-input class="inputfield" label="Description (optional)" [(ngModel)]="newClient.description" name="newClient description" ngDefaultControl>
-        <span slot="infotip">Some more information about the input field.</span>
     </sdx-input>
     <sdx-input class="inputfield" label="Comment (optional)" [(ngModel)]="newClient.comment" name="newClient comment" ngDefaultControl>
-        <span slot="infotip">Some more information about the input field.</span>
     </sdx-input>
 
 </form>

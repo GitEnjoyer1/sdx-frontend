@@ -26,10 +26,6 @@ export class CreateComponent {
 
   validationActive: boolean = false
 
-  filledOutValidationMessage: string = "";
-  emailValidationmessage: string = "";
-
-
   fetchSuccessful: boolean = true
 
   uidRangeLength: number = 1000;
@@ -111,7 +107,7 @@ export class CreateComponent {
     ) {
       this.backendService.createClient(this.newClient).subscribe(
         data => {
-          this.notificationService.showNotification('confirmation', `Successfully created new client ${this.newClient.name}`);
+          this.notificationService.showNotification('confirmation', `Successfully created the new client ${this.newClient.name}`);
           this.router.navigate(['/']);
         },
         error => {

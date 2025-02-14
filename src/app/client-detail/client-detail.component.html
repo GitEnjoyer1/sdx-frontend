@@ -1,10 +1,10 @@
 
-<div *ngIf="!isUserDetailActive">
+<div *ngIf="!isUserDetailActive && !isCreateUserActive">
         <div *ngIf="fetchSuccessful" class="detailpage">
         <div class="top-row">    
             <h1>{{client.name}}</h1>     
             <sdx-button-group>
-                <sdx-button label="Create User" icon-name="icon-plus"></sdx-button>
+                <sdx-button label="Create User" icon-name="icon-plus" href="client/{{client.id}}/create-user"></sdx-button>
                 <sdx-button label="Edit" icon-name="icon-edit"></sdx-button>
                 <sdx-button theme="secondary" label="Delete" (click)="deleteClient(client.id);" icon-name="icon-bin"></sdx-button>
             </sdx-button-group>    </div>
@@ -54,6 +54,6 @@
     
 </div>
 
-<div *ngIf="isUserDetailActive">
+<div *ngIf="isUserDetailActive || isCreateUserActive">
     <router-outlet></router-outlet>
 </div>
