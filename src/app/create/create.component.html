@@ -9,16 +9,16 @@
 <form class="create-form">
     <sdx-input class="inputfield" label="Name" [(ngModel)]="newClient.name" name="newClient name" ngDefaultControl [valid]="isFilledOut(newClient.name)" [validationMessage]="(isFilledOut(newClient.name) !== false) ? '' : 'Please enter a name'">
     </sdx-input>
-    <sdx-input class="inputfield" label="E-Mail" placeholder="name@example.com" [(ngModel)]="newClient.email" name="newClient email" ngDefaultControl [valid]="isFilledOut(newClient.email) && isValidEmail(newClient.email)" [validationMessage]="(isValidEmail(newClient.email) !== false) ? '' : 'Please enter a valid email'">
+    <sdx-input class="inputfield" label="E-Mail" placeholder="name@example.com" [(ngModel)]="newClient.email" name="newClient email" ngDefaultControl [valid]="isValidEmail(newClient.email) && isValidEmail(newClient.email)" [validationMessage]="(isValidEmail(newClient.email) !== false) ? '' : 'Please enter a valid email'">
     </sdx-input>
     <div class="container-range-length container-first-range-length">
-        <sdx-input class="inputfield-range-length" label="UID-Range length" placeholder="1000" [(ngModel)]="uidRangeLength" name="uidRangeLength" ngDefaultControl [valid]="isFilledOut(uidRangeLength) && uidRangeLength <= 5000" [validationMessage]="(isValidRangeLength(uidRangeLength) !== false) ? '' : 'Please enter a valid range between 1 - 5000'">
+        <sdx-input class="inputfield-range-length" label="UID-Range length" placeholder="1000" [(ngModel)]="uidRangeLength" name="uidRangeLength" ngDefaultControl [valid]="isValidRangeLength(uidRangeLength) && uidRangeLength <= 5000" [validationMessage]="(isValidRangeLength(uidRangeLength) !== false) ? '' : 'Please enter a valid range between 1 - 5000'">
             <span slot="infotip">Specify the length of the UID-Range</span>
         </sdx-input>
         <sdx-button class="button-range-length" label="Get UID-Range" (click)="setUidRange()"></sdx-button>
     </div>
     <div class="container-range-length">
-        <sdx-input class="inputfield-range-length" label="GID-Range length" placeholder="1000" [(ngModel)]="gidRangeLength" name="gidRangeLength" ngDefaultControl [valid]="isFilledOut(gidRangeLength) && gidRangeLength <= 5000" [validationMessage]="(isValidRangeLength(gidRangeLength) !== false) ? '' : 'Please enter a range between 1 - 5000'">
+        <sdx-input class="inputfield-range-length" label="GID-Range length" placeholder="1000" [(ngModel)]="gidRangeLength" name="gidRangeLength" ngDefaultControl [valid]="isValidRangeLength(gidRangeLength) && gidRangeLength <= 5000" [validationMessage]="(isValidRangeLength(gidRangeLength) !== false) ? '' : 'Please enter a range between 1 - 5000'">
             <span slot="infotip">Specify the length of the GID-Range</span>
         </sdx-input>
         <sdx-button class="button-range-length" label="Get GID-Range" (click)="setGidRange()" ></sdx-button>

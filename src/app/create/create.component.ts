@@ -67,7 +67,7 @@ export class CreateComponent {
           this.newClient.uidRange[1] = +this.maxUid + +this.uidRangeLength;
         },
         error => {
-          this.fetchSuccessful=false
+          this.notificationService.showNotification('warning', 'There was a problem getting your UID-Range');
           console.error('Error fetching clients', error);
         }
       );
@@ -88,7 +88,7 @@ export class CreateComponent {
           this.newClient.gidRange[1] = +this.maxGid + +this.gidRangeLength; // using unary plus (+) operator to convert to number before adding
         },
         error => {
-          this.fetchSuccessful=false
+          this.notificationService.showNotification('warning', 'There was a problem getting your GID-Range');
           console.error('Error fetching clients', error);
         }
       );
@@ -100,23 +100,34 @@ export class CreateComponent {
   }
 
   createClient() {
-    console.log(this.newClient)
     this.validationActive = true
-
-    this.backendService.createClient(this.newClient).subscribe(
-      data => {
-        console.log("client successfully created", this.newClient)
-      },
-      error => {
-        this.fetchSuccessful=false
-        console.error('Error creating client', error);
-      }
-    );
+    if (
+      this.isFilledOut(this.newClient.name) &&
+      this.isValidEmail(this.newClient.email) &&
+      this.isValidRangeLength(this.uidRangeLength) &&
+      this.isValidRangeLength(this.gidRangeLength) &&
+      this.isValidRange(this.newClient.uidRange) &&
+      this.isValidRange(this.newClient.gidRange)
+    ) {
+      this.backendService.createClient(this.newClient).subscribe(
+        data => {
+          this.notificationService.showNotification('confirmation', `Successfully created new client ${this.newClient.name}`);
+          this.router.navigate(['/']);
+        },
+        error => {
+          this.notificationService.showNotification('warning', 'There was a problem creating the client');
+          console.error('Error creating client', error);
+        }
+      );
+    }
+    else {
+      this.notificationService.showNotification('warning', 'There are still invalid inputs');
+    }
+    
   }
 
   moveBack() {
     this.router.navigate(['/']);
-
   }
 
   isFilledOut(value: any): boolean | undefined {
