@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { ClientObject } from '../utils/interfaces';
+import { ClientObject, CreateClientObject } from '../../utils/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +29,8 @@ getClients(): Observable<any> {
   );
 }
 
-getClientById(id: number): Observable<any> {
-  return this.http.get(`http://localhost:3000/clients/${id}`).pipe(
+getClientById(clientId: number): Observable<any> {
+  return this.http.get(`http://localhost:3000/clients/${clientId}`).pipe(
     map(response => {
       // Perform any transformation here if necessary
       return response;
@@ -38,14 +38,14 @@ getClientById(id: number): Observable<any> {
   );
 }
 
-getClientNameById(id: number): Observable<string> {
-  return this.http.get<ClientObject>(`http://localhost:3000/clients/${id}`).pipe(
+getClientNameById(clientId: number): Observable<string> {
+  return this.http.get<ClientObject>(`http://localhost:3000/clients/${clientId}`).pipe(
     map((client: ClientObject) => client.name)
   );
 }
 
-deleteClient(id: number): Observable<any> {
-  return this.http.delete(`http://localhost:3000/clients/${id}`).pipe(
+deleteClient(clientId: number): Observable<any> {
+  return this.http.delete(`http://localhost:3000/clients/${clientId}`).pipe(
     map(response => {
       // Perform any transformation here if necessary
       return response;
@@ -53,8 +53,16 @@ deleteClient(id: number): Observable<any> {
   );
 }
 
-createClients(id: number, client: ClientObject): Observable<any> {
-  return this.http.post(`http://localhost:3000/clients/${id},`, client).pipe(
+createClient(client: CreateClientObject): Observable<any> {
+  const clientSnakeCase = {
+    name: client.name,
+    email: client.email,
+    uid_range: client.uidRange,
+    gid_range: client.gidRange,
+    description: client.description,
+    comment: client.comment
+  };
+  return this.http.post('http://localhost:3000/clients', clientSnakeCase).pipe(
     map(response => {
       // Perform any transformation here if necessary
       return response;

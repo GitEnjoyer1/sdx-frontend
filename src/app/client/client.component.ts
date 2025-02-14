@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { BackendServiceService } from '../backend-service.service';
+import { BackendServiceService } from '../services/backend-service.service'; 
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ErrorPageComponent } from "../error-page/error-page.component";

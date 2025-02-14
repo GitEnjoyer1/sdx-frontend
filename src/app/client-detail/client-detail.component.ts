@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, numberAttribute } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { BackendServiceService } from '../backend-service.service';
+import { BackendServiceService } from '../services/backend-service.service'; 
 import { ClientObject } from '../../utils/interfaces';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../services/notification.service'; 
 import { CommonModule } from '@angular/common';
 import { ErrorPageComponent } from '../error-page/error-page.component';
 import { filter } from 'rxjs';

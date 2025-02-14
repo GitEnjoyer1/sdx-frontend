@@ -13,7 +13,7 @@ export const routes: Routes = [
             { path: 'user/:userId', component: UserDetailComponent }
         ]
     },    
-    { path: 'create', component: CreateComponent},
+    { path: 'create-client', component: CreateComponent},
     { path: '**', component: ErrorPageComponent }
 ];
 RouterModule.forRoot(routes, { enableTracing: true })

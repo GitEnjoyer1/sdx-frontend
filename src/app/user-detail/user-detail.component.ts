@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, numberAttribute } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BackendServiceService } from '../backend-service.service';
+import { BackendServiceService } from '../services/backend-service.service';
 import { UserObject } from '../../utils/interfaces';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../services/notification.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { ErrorPageComponent } from '../error-page/error-page.component';
 
@@ -58,7 +58,6 @@ export class UserDetailComponent {
   getUserById(clientId: number, userId: number): void {
     this.backendService.getUserById(clientId, userId).subscribe(
       data => {
-        console.log("data: ", data, clientId, userId)
 
         this.user.id = data.id;
         this.user.name = data.name;
@@ -72,7 +71,7 @@ export class UserDetailComponent {
       },
       error => {
         this.fetchSuccessful = false
-        console.log("error: ", error)
+        console.error("error: ", error)
 
         console.error('Error fetching user', error);
       }

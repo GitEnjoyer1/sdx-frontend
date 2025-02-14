@@ -19,3 +19,23 @@ export type UserObject = {
 	description: string;
 	comment: string;
 }
+
+export type CreateClientObject = {
+	name: string;
+    email: string;
+	uidRange: number[];
+	gidRange: number[];
+	description: string;
+	comment: string;
+}
+
+export type CreateUserObject = {
+	name: string;
+    email: string;
+    uid: number;
+	gid: number;
+    operatingSystem: string;
+    clientId: number;
+	description: string;
+	comment: string;
+}
