@@ -50,7 +50,7 @@ export class UserDetailComponent {
     this.route.params.subscribe(params => {
       const userId = params['userId'];
       this.getUserById(this.parentClientId, userId)
-      this.getClientNamebyId(this.parentClientId)
+      this.getClientNameById(this.parentClientId)
 
     });
   }
@@ -93,7 +93,7 @@ export class UserDetailComponent {
     );
   }
 
-  getClientNamebyId(id: number) {
+  getClientNameById(id: number) {
     this.backendService.getClientNameById(id).subscribe(
       data => {
         this.clientName = data;
