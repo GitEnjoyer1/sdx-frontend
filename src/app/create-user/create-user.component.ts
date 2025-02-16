@@ -60,8 +60,8 @@ export class CreateUserComponent {
   getClientRangesById(id: number) {
     this.backendService.getClientRangesById(id).subscribe(
       data => {
-        this.clientUidRange = data.uid_range;
-        this.clientGidRange = data.gid_range;
+        this.clientUidRange = data.uidRange;
+        this.clientGidRange = data.gidRange;
       },
       error => {
         this.notificationService.showNotification('warning', 'There was a problem getting the ID Ranges');
@@ -75,6 +75,7 @@ export class CreateUserComponent {
       users.forEach((user: { uid: any; gid: any; }) => {
         this.occupiedUids.push(user.uid);
         this.occupiedGids.push(user.gid);
+        console.log(this.occupiedUids, this.occupiedGids)
       });
 
     },
@@ -85,7 +86,8 @@ export class CreateUserComponent {
   }
 
   setUid() {
-    if (Math.max(...this.occupiedUids) + 1 < Math.max(...this.clientUidRange)) { // excluding upper end of uidRange. range of 1000 - 2000 contains 1001, 1002, ..., 1999
+    this.occupiedUids.push(Math.min(...this.clientUidRange))
+    if (Math.max(...this.occupiedUids) + 1 <= Math.max(...this.clientUidRange)) { // including upper end of uidRange. range of 1000 - 2000 contains 1001, 1002, ..., 2000
       this.newUser.uid = Math.max(...this.occupiedUids) + 1
     }
     else {
@@ -94,7 +96,8 @@ export class CreateUserComponent {
   } 
 
   setGid() {
-    if (Math.max(...this.occupiedGids) + 1 < Math.max(...this.clientGidRange)) { // excluding upper end of uidRange. range of 1000 - 2000 contains 1001, 1002, ..., 1999
+    this.occupiedGids.push(Math.min(...this.clientGidRange))
+    if (Math.max(...this.occupiedGids) + 1 <= Math.max(...this.clientGidRange)) { // including upper end of gidRange. range of 1000 - 2000 contains 1001, 1002, ..., 2000
       this.newUser.gid = Math.max(...this.occupiedGids) + 1
     }
     else {
@@ -114,7 +117,9 @@ export class CreateUserComponent {
       this.backendService.createUser(this.parentClientId, this.newUser).subscribe(
         data => {
           this.notificationService.showNotification('confirmation', `Successfully created the new User ${this.newUser.name}`);
-          this.router.navigate([`/client/${this.parentClientId}`]);
+          this.router.navigate([`/client/${this.parentClientId}`]).then(() => {
+            this.reloadCurrentRoute();
+        });
         },
         error => {
           this.notificationService.showNotification('warning', 'There was a problem creating the client');
@@ -130,6 +135,14 @@ export class CreateUserComponent {
 
   moveBack() {
     this.router.navigate(['/']);
+  }
+
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
   }
 
   isFilledOut(value: any): boolean | undefined {
@@ -148,14 +161,14 @@ export class CreateUserComponent {
 
   isValidUid(uid: number) {
     if (this.validationActive) {
-      return uid > Math.max(...this.occupiedUids) && uid < Math.max(...this.clientUidRange)
+      return uid > Math.max(...this.occupiedUids) && uid <= Math.max(...this.clientUidRange)
     } 
     return undefined;
     }
 
     isValidGid(gid: number) {
       if (this.validationActive) {
-        return gid > Math.max(...this.occupiedGids) && gid < Math.max(...this.clientGidRange)
+        return gid > Math.max(...this.occupiedGids) && gid <= Math.max(...this.clientGidRange)
       } 
       return undefined;
       }

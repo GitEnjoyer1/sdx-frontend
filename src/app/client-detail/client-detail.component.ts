@@ -73,19 +73,14 @@ export class ClientDetailComponent {
     return new Promise((resolve, reject) => {
       this.backendService.getClientById(clientId).subscribe(
         data => {
-          this.client.id = data.id;
-          this.client.name = data.name;
-          this.client.email = data.email;
-          this.client.uidRange = data.uid_range; // directly map uid_range to uidRange
-          this.client.gidRange = data.gid_range; // directly map gid_range to gidRange
-          this.client.description = data.description;
-          this.client.comment = data.comment;
-          resolve();
+          this.client = data
+          resolve()
         },
         error => {
           this.fetchSuccessful = false
           this.notificationService.showNotification('warning', 'There was a problem trying to fetch the client details');
           console.error('Error fetching client', error);
+          reject()
         }
       );
     });
@@ -108,7 +103,9 @@ export class ClientDetailComponent {
   getUsers(clientId: number): void {
     this.backendService.getUsers(clientId).subscribe(
       data => {
+        console.log(data)
         this.users = data;
+        console.log(this.users)
         if (this.users == false) {
           this.usersEmpty = true;
         }

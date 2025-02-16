@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, numberAttribute } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendServiceService } from '../services/backend-service.service';
 import { UserObject } from '../../utils/interfaces';
@@ -23,7 +23,7 @@ export class UserDetailComponent {
 
   clientName: string = ''
 
-  parentClientId: number = 0
+  parentClientId: number = NaN
 
   user: UserObject = {
     id: 0,
@@ -41,15 +41,15 @@ export class UserDetailComponent {
   ngOnInit() {
     if (this.route.parent) {
       this.route.parent.params.subscribe(params => {
-        const clientId = params['clientId'];
-        this.parentClientId = clientId
+        this.parentClientId = params['clientId'];
       });
     } else {
       console.error('No parent route found');
     }
     this.route.params.subscribe(params => {
-      const userId = params['userId'];
-      this.getUserById(this.parentClientId, userId)
+      this.user.id = params['userId'];
+
+      this.getUserById(this.parentClientId, this.user.id)
       this.getClientNameById(this.parentClientId)
 
     });
@@ -58,16 +58,7 @@ export class UserDetailComponent {
   getUserById(clientId: number, userId: number): void {
     this.backendService.getUserById(clientId, userId).subscribe(
       data => {
-
-        this.user.id = data.id;
-        this.user.name = data.name;
-        this.user.email = data.email;
-        this.user.uid = data.uid; // directly map uid_range to uidRange
-        this.user.gid = data.gid; // directly map gid_range to gidRange
-        this.user.operatingSystem = data.operating_system; // directly map gid_range to gidRange
-        this.user.clientId = data.client_id; // directly map gid_range to gidRange
-        this.user.description = data.description;
-        this.user.comment = data.comment;
+        this.user = data;
       },
       error => {
         this.fetchSuccessful = false
@@ -81,7 +72,7 @@ export class UserDetailComponent {
   deleteUser(clientId: number, userId: number): void {
     this.backendService.deleteUser(clientId, userId).subscribe(
       data => {
-        this.router.navigate([`/client/${this.user.clientId}`]).then(() => {
+        this.router.navigate([`/client/${this.parentClientId}`]).then(() => {
           this.reloadCurrentRoute();
       });
         this.notificationService.showNotification('confirmation', `Successfully deleted the user ${this.user.name}`)
