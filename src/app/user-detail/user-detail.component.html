@@ -2,8 +2,8 @@
     <div class="top-row">    
         <h1>{{user.name}}</h1>     
         <sdx-button-group>
-            <sdx-button label="Edit"></sdx-button>
-            <sdx-button theme="secondary" label="Delete" (click)="deleteUser(parentClientId, user.id);" ></sdx-button>
+            <sdx-button label="Edit" icon-name="icon-edit"></sdx-button>
+            <sdx-button theme="secondary" label="Delete" (click)="deleteUser(parentClientId, user.id);" icon-name="icon-bin" ></sdx-button>
         </sdx-button-group>    
     </div>
     <h4>{{user.description}}</h4>
