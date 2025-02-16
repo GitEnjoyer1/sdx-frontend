@@ -1,0 +1,30 @@
+<div class="header">
+    <div class="button-row">
+            <h1>Edit Client</h1>
+    </div>
+    <h4 class="sub-header">Fill out the fileds below and click the "Edit client" button to edit the client.</h4>
+    <hr class="divider divider--mid-gray" aria-hidden="true">
+</div>
+
+<form class="create-form">
+    <sdx-input class="inputfield" label="Name" [(ngModel)]="editedUser.name" name="editedClient name" ngDefaultControl [valid]="isFilledOut(editedUser.name)" [validationMessage]="(isFilledOut(editedUser.name) !== false) ? '' : 'Please enter a name'">
+    </sdx-input>
+    <sdx-input class="inputfield" label="E-Mail" placeholder="name@example.com" [(ngModel)]="editedUser.email" name="editedClient email" ngDefaultControl [valid]="isValidEmail(editedUser.email)" [validationMessage]="(isValidEmail(editedUser.email) !== false) ? '' : 'Please enter a valid email'">
+    </sdx-input>
+    <sdx-input class="inputfield" label="Operating System" [(ngModel)]="editedUser.operatingSystem" name="editedClient operatingSystem" ngDefaultControl [valid]="isFilledOut(editedUser.operatingSystem)" [validationMessage]="(isFilledOut(editedUser.operatingSystem) !== false) ? '' : 'Please enter an operating system'">
+    </sdx-input>
+    <sdx-input class="inputfield" label="Description (optional)" [(ngModel)]="editedUser.description" name="editedClient description" ngDefaultControl>
+    </sdx-input>
+    <sdx-input class="inputfield" label="Comment (optional)" [(ngModel)]="editedUser.comment" name="editedClient comment" ngDefaultControl>
+    </sdx-input>
+    <div class="inputfield"></div>
+
+</form>
+
+<div class="button-group">
+    <sdx-button-group>
+        <sdx-button class="button-create-client" label="Edit client" (click)="editUser()"></sdx-button>
+        <sdx-button class="button-back" theme="secondary" label="Back" (click)="moveBack()"></sdx-button>
+    </sdx-button-group>
+    
+</div>

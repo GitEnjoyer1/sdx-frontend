@@ -6,13 +6,18 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { CreateComponent } from './create/create.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { EditClientComponent } from './edit-client/edit-client.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 export const routes: Routes = [
     { path: '', component: ClientComponent },
     { path: 'clients', component: ClientComponent },
     { path: 'client/:clientId', component: ClientDetailComponent, 
         children: [
-            { path: 'user/:userId', component: UserDetailComponent },
+            { path: 'user/:userId', component: UserDetailComponent,
+                children: [
+                    { path: 'edit', component: EditUserComponent }
+                ]
+            },
             { path: 'create-user', component: CreateUserComponent},
             { path: 'edit', component: EditClientComponent}
         ]

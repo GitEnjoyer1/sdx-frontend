@@ -1,23 +1,33 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd, RouterLink, RouterOutlet } from '@angular/router';
 import { BackendServiceService } from '../services/backend-service.service';
 import { UserObject } from '../../utils/interfaces';
 import { NotificationService } from '../services/notification.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { ErrorPageComponent } from '../error-page/error-page.component';
-
+import { filter } from 'rxjs';
+import { OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [CommonModule, NgIf, ErrorPageComponent],
+  imports: [CommonModule, NgIf, ErrorPageComponent, RouterLink, RouterOutlet],
   templateUrl: './user-detail.component.html',
   styleUrl: './user-detail.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class UserDetailComponent {
 
-  constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService){}
+  constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService) {
+    router.events.pipe(
+      filter(e => e instanceof NavigationEnd)
+    ).subscribe(event => {
+      const navEnd = event as NavigationEnd;
+      this.isEditUserActive = navEnd.urlAfterRedirects.includes('/edit');
+    });
+  }
+
+  isEditUserActive: boolean = false
 
   fetchSuccessful: boolean = true
 
@@ -37,6 +47,9 @@ export class UserDetailComponent {
     comment: ''
   };
 
+  ngDoCheck() {
+    this.isEditUserActive = this.router.url.endsWith('/edit');
+  }
 
   ngOnInit() {
     if (this.route.parent) {

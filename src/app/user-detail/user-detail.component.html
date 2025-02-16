@@ -1,31 +1,37 @@
-<div *ngIf="fetchSuccessful" class="detailpage">
-    <div class="top-row">    
-        <h1>{{user.name}}</h1>     
-        <sdx-button-group>
-            <sdx-button label="Edit" icon-name="icon-edit"></sdx-button>
-            <sdx-button theme="secondary" label="Delete" (click)="deleteUser(parentClientId, user.id);" icon-name="icon-bin" ></sdx-button>
-        </sdx-button-group>    
-    </div>
-    <h4>{{user.description}}</h4>
-
-
-    <div class="details">
-        <div class="row">
-            <p class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{user.email}}</p>
-            <p class="col-xs">Client: {{clientName}}</p>
-            <p class="col-xs">UID: {{user.uid}}</p>
-
+<div *ngIf="!isEditUserActive">
+    <div *ngIf="fetchSuccessful" class="detailpage">
+        <div class="top-row">    
+            <h1>{{user.name}}</h1>     
+            <sdx-button-group>
+                <sdx-button label="Edit" icon-name="icon-edit" [routerLink]="['/client', parentClientId, 'user', user.id, 'edit']"></sdx-button>
+                <sdx-button theme="secondary" label="Delete" (click)="deleteUser(parentClientId, user.id);" icon-name="icon-bin" ></sdx-button>
+            </sdx-button-group>    
         </div>
-        <div class="row">
-            <p class="col-xs"><sdx-icon class="icon" icon-name="icon-speech-bubble" size="" sr-hint="Displays the user account"></sdx-icon> Operating System: {{user.operatingSystem}}</p>
-            <p class="col-xs">Comment: {{user.comment}}</p>
-            <p class="col-xs">GID: {{user.gid}}</p>
-        </div>
-    </div>
-    <hr class="divider divider--mid-gray" aria-hidden="true">
+        <h4>{{user.description}}</h4>
 
+
+        <div class="details">
+            <div class="row">
+                <p class="col-xs"><sdx-icon class="icon" icon-name="icon-account" size="" sr-hint="Displays the user account"></sdx-icon> E-Mail: {{user.email}}</p>
+                <p class="col-xs">Client: {{clientName}}</p>
+                <p class="col-xs">UID: {{user.uid}}</p>
+
+            </div>
+            <div class="row">
+                <p class="col-xs"><sdx-icon class="icon" icon-name="icon-speech-bubble" size="" sr-hint="Displays the user account"></sdx-icon> Operating System: {{user.operatingSystem}}</p>
+                <p class="col-xs">Comment: {{user.comment}}</p>
+                <p class="col-xs">GID: {{user.gid}}</p>
+            </div>
+        </div>
+        <hr class="divider divider--mid-gray" aria-hidden="true">
+
+    </div>
+
+    <div *ngIf="!fetchSuccessful" class="error">
+            <app-error-page [type]="'fetchError'"></app-error-page>
+    </div>
 </div>
 
-<div *ngIf="!fetchSuccessful" class="error">
-        <app-error-page [type]="'fetchError'"></app-error-page>
+<div *ngIf="isEditUserActive">
+    <router-outlet></router-outlet>
 </div>

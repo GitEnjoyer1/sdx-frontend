@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { ClientObject, CreateClientObject, CreateUserObject, EditClientObject } from '../../utils/interfaces';
+import { ClientObject, CreateClientObject, CreateUserObject, EditClientObject, EditUserObject } from '../../utils/interfaces';
 import { CreateUserComponent } from '../create-user/create-user.component';
 
 @Injectable({
@@ -74,10 +74,12 @@ deleteUser(clientId: number, userId: number): Observable<any> {
   return this.http.delete(`http://localhost:3000/clients/${clientId}/users/${userId}?client_id=${clientId}&id=${userId}`)
 }
 
-
-
 createUser(clientId: number, user: CreateUserObject): Observable<any> {
   return this.http.post(`http://localhost:3000/clients/${clientId}/users`, user)
+}
+
+editUser(clientId: number, userId: number, editedUser: EditUserObject): Observable<any> {
+  return this.http.patch(`http://localhost:3000/clients/${clientId}/users/${userId}`, editedUser)
 }
 
 }

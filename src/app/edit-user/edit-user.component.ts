@@ -1,26 +1,28 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BackendServiceService } from '../services/backend-service.service';
 import { NotificationService } from '../services/notification.service';
-import { EditClientObject } from '../../utils/interfaces';
+import { EditUserObject } from '../../utils/interfaces';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-edit-client',
+  selector: 'app-edit-user',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './edit-client.component.html',
-  styleUrl: './edit-client.component.scss',
+  templateUrl: './edit-user.component.html',
+  styleUrl: './edit-user.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class EditClientComponent {
+export class EditUserComponent {
 
 
   constructor( private backendService: BackendServiceService, private notificationService: NotificationService, private router: Router, private route: ActivatedRoute ) {}
 
   parentClientId: number = NaN
+
+  parentUserId: number = NaN
 
   emailRegex: RegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
@@ -28,54 +30,64 @@ export class EditClientComponent {
 
   fetchSuccessful: boolean = true
 
-  editedClient: EditClientObject = {
+  editedUser: EditUserObject = {
     name: '',
     email: '',
+    operatingSystem: '',
     description: '',
     comment: ''
   }
 
   ngOnInit(): void {
-    if (this.route.parent) {
-      this.route.parent.params.subscribe(params => {
+    // accessing the grandparent route as we are two levels deep
+    if (this.route.parent?.parent) {
+      this.route.parent.parent.params.subscribe(params => {
         this.parentClientId = params['clientId'];
+      });
+
+      // additionally subscribe to the parent route to get userId
+      this.route.parent.params.subscribe(params => {
+        this.parentUserId = params['userId'];
       });
     } else {
       console.error('No parent route found');
     }
-    this.getClientById(this.parentClientId)
-    }
+    this.getUserById(this.parentClientId, this.parentUserId);
+}
+
   
-  getClientById(clientId: number) {
-    this.backendService.getClientById(clientId).subscribe(
+  getUserById(clientId: number, userId: number) {
+    this.backendService.getUserById(clientId, userId).subscribe(
       data => {
-        this.editedClient.name = data.name
-        this.editedClient.email = data.email
-        this.editedClient.description = data.description
-        this.editedClient.comment = data.comment
+        this.editedUser.name = data.name
+        this.editedUser.email = data.email
+        this.editedUser.operatingSystem = data.operatingSystem
+        this.editedUser.description = data.description
+        this.editedUser.comment = data.comment
       },
       error => {
-        console.error('Error fetching client', error);
+        console.error('Error fetching user', error);
       }
     );
   }
 
-  editClient() {
+  editUser() {
     this.validationActive = true
     if (
-      this.isFilledOut(this.editedClient.name) &&
-      this.isValidEmail(this.editedClient.email)
+      this.isFilledOut(this.editedUser.name) &&
+      this.isValidEmail(this.editedUser.email) &&
+      this.isFilledOut(this.editedUser.operatingSystem)
     ) {
-      this.backendService.editClient(this.parentClientId, this.editedClient).subscribe(
+      this.backendService.editUser(this.parentClientId, this.parentUserId, this.editedUser).subscribe(
         data => {
-          this.notificationService.showNotification('confirmation', `Successfully edited the client ${this.editedClient.name}`);
-          this.router.navigate([`/client/${this.parentClientId}`]).then(() => {
+          this.notificationService.showNotification('confirmation', `Successfully edited the user ${this.editedUser.name}`);
+          this.router.navigate([`/client/${this.parentClientId}/user/${this.parentUserId}`]).then(() => {
             this.reloadCurrentRoute();
         });
         },
         error => {
-          this.notificationService.showNotification('warning', 'There was a problem editing the client');
-          console.error('Error editing client', error);
+          this.notificationService.showNotification('warning', 'There was a problem editing the user');
+          console.error('Error editing user', error);
         }
       );
     }
@@ -86,7 +98,7 @@ export class EditClientComponent {
   }
 
   moveBack() {
-    this.router.navigate([`/client/${this.parentClientId}`]).then(() => {
+    this.router.navigate([`/client/${this.parentClientId}/user/${this.parentUserId}`]).then(() => {
       this.reloadCurrentRoute();
     });
   }
@@ -112,3 +124,6 @@ export class EditClientComponent {
     return undefined;
     }
 }
+
+
+

@@ -26,7 +26,6 @@ export class ClientDetailComponent {
     router.events.pipe(
       filter(e => e instanceof NavigationEnd)
     ).subscribe(event => {
-      // Within subscribe block, events are ensured to be of type NavigationEnd
       const navEnd = event as NavigationEnd;
       this.isUserDetailActive = navEnd.urlAfterRedirects.includes('/user/');
       this.isCreateUserActive = navEnd.urlAfterRedirects.includes('/create-user');
