@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo starting mockservice
-npx json-server /Users/taaelhu2/private/private_projects/frontend/sdx-frontend/db.json
+npx json-server --watch /Users/taaelhu2/private/private_projects/frontend/sdx-frontend/db.json --routes /Users/taaelhu2/private/private_projects/frontend/sdx-frontend/routes.json;
