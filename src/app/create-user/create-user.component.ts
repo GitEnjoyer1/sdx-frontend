@@ -131,7 +131,9 @@ export class CreateUserComponent {
   }
 
   moveBack() {
-    this.router.navigate(['/']);
+    this.router.navigate([`/client/${this.parentClientId}`]).then(() => {
+      this.reloadCurrentRoute();
+  });
   }
 
 

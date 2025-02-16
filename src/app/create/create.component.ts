@@ -123,7 +123,7 @@ export class CreateComponent {
   }
 
   moveBack() {
-    this.router.navigate(['/']);
+    this.router.navigate([`/`]);
   }
 
   isFilledOut(value: any): boolean | undefined {
