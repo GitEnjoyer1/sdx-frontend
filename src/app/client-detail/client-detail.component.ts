@@ -5,8 +5,7 @@ import { ClientObject } from '../../utils/interfaces';
 import { NotificationService } from '../services/notification.service'; 
 import { CommonModule } from '@angular/common';
 import { ErrorPageComponent } from '../error-page/error-page.component';
-import { filter } from 'rxjs';
-import { UserDetailComponent } from '../user-detail/user-detail.component';
+import { filter, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-client-detail',
@@ -22,20 +21,9 @@ export class ClientDetailComponent {
   isCreateUserActive = false;
   isEditClientActive = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService){
-    router.events.pipe(
-      filter(e => e instanceof NavigationEnd)
-    ).subscribe(event => {
-      const navEnd = event as NavigationEnd;
-      this.isUserDetailActive = navEnd.urlAfterRedirects.includes('/user/');
-      this.isCreateUserActive = navEnd.urlAfterRedirects.includes('/create-user');
-      this.isEditClientActive = navEnd.urlAfterRedirects.includes('/edit');
-    });
-  }
-
+  clientId: number = NaN
   fetchSuccessful: boolean = true;
   usersEmpty: boolean = false;
-
 
   client: ClientObject = {
     id: 0,
@@ -49,13 +37,24 @@ export class ClientDetailComponent {
 
   users: any = [];
 
+  constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService){
+    router.events.pipe(
+      filter(e => e instanceof NavigationEnd)
+    ).subscribe(event => {
+      const navEnd = event as NavigationEnd;
+      this.isUserDetailActive = navEnd.urlAfterRedirects.includes('/user/');
+      this.isCreateUserActive = navEnd.urlAfterRedirects.includes('/create-user');
+      this.isEditClientActive = navEnd.urlAfterRedirects.includes('/edit');
+    });
+  }
+
   async ngOnInit() {
       this.route.params.subscribe(async params => {
-      const clientId = params['clientId'];
+      this.clientId = params['clientId'];
       if (!this.isCreateUserActive && !this.isUserDetailActive && !this.isEditClientActive) { // stop detail component from making requests if other components are active
         try {
-          await this.getClientById(clientId);
-          this.getUsers(clientId);
+          await this.getClientById(this.clientId);
+          this.getUsers(this.clientId);
         } catch (error) {
           console.error('Error fetching client', error);
         }
@@ -82,16 +81,30 @@ export class ClientDetailComponent {
 
 
   deleteClient(id: number): void {
-    this.backendService.deleteClient(id).subscribe(
-      data => {
-        this.router.navigate(['/']);
-        this.notificationService.showNotification('confirmation', `Successfully deleted the client ${this.client.name}`)
+   // Get an array of observables for the delete user requests.
+    const deleteUserObservables = this.users.map((user: { id: number; }) => this.backendService.deleteUser(this.clientId, user.id));
+
+   // Use forkJoin to process all delete user requests.
+    forkJoin(deleteUserObservables).subscribe({
+      next: () => {
+       // After all users have been deleted, delete the client.
+        this.backendService.deleteClient(id).subscribe(
+          data => {
+            this.router.navigate(['/']);
+            this.notificationService.showNotification('confirmation', `Successfully deleted the client ${this.client.name}`);
+          },
+          error => {
+            this.notificationService.showNotification('warning', 'There was a problem deleting the client.');
+            console.error('Error deleting client', error);
+          }
+        );
       },
-      error => {
-        this.notificationService.showNotification('warning', 'There was a problem deleting the client.');
-        console.error('Error fetching client', error);
+      error: error => {
+       // Handle errors from deleting users here.
+        console.error('Error deleting users', error);
+        this.notificationService.showNotification('warning', 'There was a problem deleting the users.');
       }
-    );
+    });
   }
 
   getUsers(clientId: number): void {
