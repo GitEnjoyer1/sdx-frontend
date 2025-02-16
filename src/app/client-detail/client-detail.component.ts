@@ -83,8 +83,9 @@ export class ClientDetailComponent {
           resolve();
         },
         error => {
-          // reject the promise if there's an error
-          reject(error);
+          this.fetchSuccessful = false
+          this.notificationService.showNotification('warning', 'There was a problem trying to fetch the client details');
+          console.error('Error fetching client', error);
         }
       );
     });
@@ -114,6 +115,7 @@ export class ClientDetailComponent {
       },
       error => {
         this.fetchSuccessful = false
+        this.notificationService.showNotification('warning', 'There was a problem trying to fetch the users');
         console.error('Error fetching users', error);
       }
     );

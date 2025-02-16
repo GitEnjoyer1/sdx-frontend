@@ -47,9 +47,7 @@ export class CreateUserComponent {
   ngOnInit() {
     if (this.route.parent) {
       this.route.parent.params.subscribe(params => {
-        const clientId = params['clientId'];
-        this.parentClientId = clientId;
-        this.newUser.clientId = this.parentClientId;
+        this.parentClientId = params['clientId'];
       });
     } else {
       console.error('No parent route found');
@@ -105,6 +103,7 @@ export class CreateUserComponent {
   }
   createUser() {
     this.validationActive = true
+    console.log(this.newUser)
     if (
       this.isFilledOut(this.newUser.name) &&
       this.isValidEmail(this.newUser.email) &&
