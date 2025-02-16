@@ -1,0 +1,62 @@
+h1 {
+    margin-top: .5em;
+}
+
+.header {
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.create-form {
+    display: flex;      /* Enable flex on the container */
+    flex-wrap: wrap;
+    align-items: center;   /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inputfield {
+    margin: 1em;   /* Vertical spacing */
+    width: 30vw;
+}
+
+.inputfield-range-length {
+    width: 18vw;
+    margin-right: 1em;
+}
+
+.button-range-length {
+    width: 11vw;
+    margin-top: 1.7em;
+}
+
+.container-range-length {
+    width: 30vw;
+    display: flex;
+    align-items:center;
+}
+
+.container-first-range-length {
+    margin-right: 2em;
+}
+
+.button-create-client {
+    margin-top: 2em;
+    width: 10vw;
+}
+
+
+.button-back {
+    margin-top: 2em;
+    width: 10vw;
+}
+
+.button-group {
+    width: 62vw;
+    margin-left: auto;
+    margin-right: auto;
+}

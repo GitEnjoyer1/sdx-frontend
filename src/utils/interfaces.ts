@@ -39,3 +39,18 @@ export type CreateUserObject = {
 	description: string;
 	comment: string;
 }
+
+export type EditClientObject = {
+	name: string;
+    email: string;
+	description: string;
+	comment: string;
+}
+
+export type EditUserObject = {
+	name: string;
+    email: string;
+    operatingSystem: string;
+	description: string;
+	comment: string;
+}

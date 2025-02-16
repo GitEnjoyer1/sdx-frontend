@@ -7,9 +7,9 @@
 </div>
 
 <form class="create-form">
-    <sdx-input class="inputfield" label="Name" [(ngModel)]="newUser.name" name="newClient name" ngDefaultControl [valid]="isFilledOut(newUser.name)" [validationMessage]="(isFilledOut(newUser.name) !== false) ? '' : 'Please enter a name'">
+    <sdx-input class="inputfield" label="Name" [(ngModel)]="newUser.name" name="newUser name" ngDefaultControl [valid]="isFilledOut(newUser.name)" [validationMessage]="(isFilledOut(newUser.name) !== false) ? '' : 'Please enter a name'">
     </sdx-input>
-    <sdx-input class="inputfield" label="E-Mail" placeholder="name@example.com" [(ngModel)]="newUser.email" name="newClient email" ngDefaultControl [valid]="isValidEmail(newUser.email) && isValidEmail(newUser.email)" [validationMessage]="(isValidEmail(newUser.email) !== false) ? '' : 'Please enter a valid email'">
+    <sdx-input class="inputfield" label="E-Mail" placeholder="name@example.com" [(ngModel)]="newUser.email" name="newUser email" ngDefaultControl [valid]="isValidEmail(newUser.email) && isValidEmail(newUser.email)" [validationMessage]="(isValidEmail(newUser.email) !== false) ? '' : 'Please enter a valid email'">
     </sdx-input>
     <div class="container-range-length container-first-range-length">
         <sdx-input class="inputfield-range-length" label="UID" readonly [(ngModel)]="newUser.uid" name="uidRangeLength" ngDefaultControl [valid]="isValidUid(newUser.uid)" [validationMessage]="(isValidUid(newUser.uid) !== false) ? '' : 'Please get a UID using the `Get UID` button'">
@@ -23,11 +23,11 @@
         </sdx-input>
         <sdx-button class="button-range-length" label="Get GID" (click)="setGid()"></sdx-button>
     </div>
-    <sdx-input class="inputfield" label="Operating System" [(ngModel)]="newUser.operatingSystem" name="newClient description" ngDefaultControl [valid]="isFilledOut(newUser.operatingSystem)" [validationMessage]="(isFilledOut(newUser.operatingSystem) !== false) ? '' : 'Please enter an operating system'">
+    <sdx-input class="inputfield" label="Operating System" [(ngModel)]="newUser.operatingSystem" name="newUser description" ngDefaultControl [valid]="isFilledOut(newUser.operatingSystem)" [validationMessage]="(isFilledOut(newUser.operatingSystem) !== false) ? '' : 'Please enter an operating system'">
     </sdx-input>
-    <sdx-input class="inputfield" label="Description (optional)" [(ngModel)]="newUser.description" name="newClient description" ngDefaultControl>
+    <sdx-input class="inputfield" label="Description (optional)" [(ngModel)]="newUser.description" name="newUser description" ngDefaultControl>
     </sdx-input>
-    <sdx-input class="inputfield" label="Comment (optional)" [(ngModel)]="newUser.comment" name="newClient comment" ngDefaultControl>
+    <sdx-input class="inputfield" label="Comment (optional)" [(ngModel)]="newUser.comment" name="newUser comment" ngDefaultControl>
     </sdx-input>
     <div class="inputfield">
     </div>

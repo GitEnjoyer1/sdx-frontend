@@ -84,8 +84,8 @@ export class UserDetailComponent {
     );
   }
 
-  getClientNameById(id: number) {
-    this.backendService.getClientNameById(id).subscribe(
+  getClientNameById(clientId: number) {
+    this.backendService.getClientNameById(clientId).subscribe(
       data => {
         this.clientName = data;
       },

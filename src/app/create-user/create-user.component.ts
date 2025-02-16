@@ -2,7 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BackendServiceService } from '../services/backend-service.service';
 import { NotificationService } from '../services/notification.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ClientObject, CreateClientObject, CreateUserObject } from '../../utils/interfaces';
+import { CreateUserObject } from '../../utils/interfaces';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -54,7 +54,6 @@ export class CreateUserComponent {
     }
     this.getClientRangesById(this.parentClientId);
     this.getUserIds(this.parentClientId);
-    console.log(this.newUser.clientId)
     }
 
   getClientRangesById(id: number) {
@@ -75,7 +74,6 @@ export class CreateUserComponent {
       users.forEach((user: { uid: any; gid: any; }) => {
         this.occupiedUids.push(user.uid);
         this.occupiedGids.push(user.gid);
-        console.log(this.occupiedUids, this.occupiedGids)
       });
 
     },
@@ -106,7 +104,6 @@ export class CreateUserComponent {
   }
   createUser() {
     this.validationActive = true
-    console.log(this.newUser)
     if (
       this.isFilledOut(this.newUser.name) &&
       this.isValidEmail(this.newUser.email) &&

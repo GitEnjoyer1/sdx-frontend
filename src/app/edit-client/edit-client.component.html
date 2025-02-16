@@ -1,0 +1,27 @@
+<div class="header">
+    <div class="button-row">
+            <h1>Edit Client</h1>
+    </div>
+    <h4 class="sub-header">Fill out the fileds below and click the "Edit client" button to edit the client.</h4>
+    <hr class="divider divider--mid-gray" aria-hidden="true">
+</div>
+
+<form class="create-form">
+    <sdx-input class="inputfield" label="Name" [(ngModel)]="editedClient.name" name="editedClient name" ngDefaultControl [valid]="isFilledOut(editedClient.name)" [validationMessage]="(isFilledOut(editedClient.name) !== false) ? '' : 'Please enter a name'">
+    </sdx-input>
+    <sdx-input class="inputfield" label="E-Mail" placeholder="name@example.com" [(ngModel)]="editedClient.email" name="editedClient email" ngDefaultControl [valid]="isValidEmail(editedClient.email)" [validationMessage]="(isValidEmail(editedClient.email) !== false) ? '' : 'Please enter a valid email'">
+    </sdx-input>
+    <sdx-input class="inputfield" label="Description (optional)" [(ngModel)]="editedClient.description" name="editedClient description" ngDefaultControl>
+    </sdx-input>
+    <sdx-input class="inputfield" label="Comment (optional)" [(ngModel)]="editedClient.comment" name="editedClient comment" ngDefaultControl>
+    </sdx-input>
+
+</form>
+
+<div class="button-group">
+    <sdx-button-group>
+        <sdx-button class="button-create-client" label="Edit client" (click)="editClient()"></sdx-button>
+        <sdx-button class="button-back" theme="secondary" label="Back" (click)="moveBack()"></sdx-button>
+    </sdx-button-group>
+    
+</div>

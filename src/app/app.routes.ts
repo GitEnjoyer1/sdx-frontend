@@ -5,6 +5,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { CreateComponent } from './create/create.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { EditClientComponent } from './edit-client/edit-client.component';
 
 export const routes: Routes = [
     { path: '', component: ClientComponent },
@@ -12,8 +13,8 @@ export const routes: Routes = [
     { path: 'client/:clientId', component: ClientDetailComponent, 
         children: [
             { path: 'user/:userId', component: UserDetailComponent },
-            { path: 'create-user', component: CreateUserComponent}
-
+            { path: 'create-user', component: CreateUserComponent},
+            { path: 'edit', component: EditClientComponent}
         ]
     },    
     { path: 'create-client', component: CreateComponent},

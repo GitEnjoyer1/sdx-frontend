@@ -19,7 +19,8 @@ import { UserDetailComponent } from '../user-detail/user-detail.component';
 export class ClientDetailComponent {
   
   isUserDetailActive = false;
-  isCreateUserActive = false
+  isCreateUserActive = false;
+  isEditClientActive = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private backendService: BackendServiceService, private notificationService: NotificationService){
     router.events.pipe(
@@ -29,7 +30,7 @@ export class ClientDetailComponent {
       const navEnd = event as NavigationEnd;
       this.isUserDetailActive = navEnd.urlAfterRedirects.includes('/user/');
       this.isCreateUserActive = navEnd.urlAfterRedirects.includes('/create-user');
-
+      this.isEditClientActive = navEnd.urlAfterRedirects.includes('/edit');
     });
   }
 
@@ -52,21 +53,15 @@ export class ClientDetailComponent {
   async ngOnInit() {
       this.route.params.subscribe(async params => {
       const clientId = params['clientId'];
-      try {
-        await this.getClientById(clientId);
-        this.getUsers(clientId);
-      } catch (err) {
-        console.error('Error fetching client', err);
+      if (!this.isCreateUserActive && !this.isUserDetailActive && !this.isEditClientActive) { // stop detail component from making requests if other components are active
+        try {
+          await this.getClientById(clientId);
+          this.getUsers(clientId);
+        } catch (error) {
+          console.error('Error fetching client', error);
+        }
       }
     })
-  }
-
-  onActivate(event: any) {
-    if (event instanceof UserDetailComponent) {
-      this.isUserDetailActive = true;
-    } else {
-      this.isUserDetailActive = false;
-    }
   }
 
   getClientById(clientId: number): Promise<void> {
@@ -103,9 +98,7 @@ export class ClientDetailComponent {
   getUsers(clientId: number): void {
     this.backendService.getUsers(clientId).subscribe(
       data => {
-        console.log(data)
         this.users = data;
-        console.log(this.users)
         if (this.users == false) {
           this.usersEmpty = true;
         }
